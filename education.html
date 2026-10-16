@@ -1,0 +1,550 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GovGuide | Education</title>
+    <style>
+        :root {
+            --primary: #1746a2;
+            --secondary: #2478e5;
+            --ink: #172b4d;
+            --muted: #62718a;
+            --surface: #ffffff;
+            --background: #f4f7fc;
+            --border: #e1e8f2;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: var(--ink);
+            background: var(--background);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; }
+
+        header {
+            background: #fff;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            box-shadow: 0 3px 16px #172b4d0c;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-mark {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            color: white;
+            background: linear-gradient(135deg, #1746a2, #3989f4);
+            border-radius: 14px;
+            font-size: 26px;
+            font-weight: 800;
+        }
+
+        .logo h2 { margin: 0; font-size: 23px; }
+        .logo p { margin: 0; font-size: 12px; color: var(--muted); }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 17px;
+        }
+
+        nav a, .login-btn {
+            color: #35445e;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        nav a:hover { color: var(--secondary); }
+
+        .login-btn {
+            padding: 10px 19px;
+            color: white;
+            background: var(--primary);
+            border-radius: 9px;
+        }
+
+        .hero {
+            margin: 28px auto 0;
+            width: 90%;
+            max-width: 1250px;
+            padding: 65px 7%;
+            border-radius: 25px;
+            color: white;
+            background: linear-gradient(120deg, #102e70, #1d60c9 65%, #3989f4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "🎓";
+            position: absolute;
+            right: 8%;
+            top: 25%;
+            font-size: clamp(70px, 12vw, 145px);
+            opacity: .2;
+        }
+
+        .eyebrow {
+            font-size: 13px;
+            letter-spacing: 2px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 52px);
+            line-height: 1.15;
+            max-width: 650px;
+            margin: 15px 0;
+        }
+
+        .hero p {
+            max-width: 650px;
+            color: #e4edff;
+            font-size: 16px;
+        }
+
+        .hero-link {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 12px 20px;
+            background: white;
+            color: var(--primary);
+            border-radius: 9px;
+            font-weight: 700;
+        }
+
+        .stats {
+            width: 90%;
+            max-width: 1150px;
+            margin: 22px auto 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .stat {
+            padding: 20px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat strong { display: block; font-size: 23px; color: var(--primary); }
+        .stat span { color: var(--muted); font-size: 13px; }
+
+        .section {
+            width: 90%;
+            max-width: 1150px;
+            margin: 48px auto;
+        }
+
+        .section-heading { margin-bottom: 23px; }
+        .section-heading h2 { margin: 0 0 7px; font-size: 29px; }
+        .section-heading p { margin: 0; color: var(--muted); }
+
+        .tools {
+            display: grid;
+            grid-template-columns: minmax(180px, 1fr) minmax(180px, 240px) auto;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .tools input, .tools select {
+            width: 100%;
+            padding: 14px;
+            background: white;
+            border: 1px solid #d7e0ee;
+            border-radius: 10px;
+            font: inherit;
+            color: var(--ink);
+        }
+
+        .reset-btn {
+            padding: 12px 19px;
+            border: 0;
+            border-radius: 10px;
+            background: #e4edff;
+            color: var(--primary);
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .result-count { color: var(--muted); font-size: 13px; margin: 10px 0 18px; }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            background: var(--surface);
+            padding: 25px;
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            box-shadow: 0 5px 20px #1a37610a;
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px #1a376116;
+        }
+
+        .card-icon {
+            width: 55px;
+            height: 55px;
+            display: grid;
+            place-items: center;
+            font-size: 28px;
+            border-radius: 15px;
+            background: #edf3ff;
+        }
+
+        .card h3 { margin: 17px 0 8px; font-size: 20px; }
+        .card p { color: var(--muted); font-size: 14px; margin: 0 0 16px; }
+        .tag {
+            align-self: flex-start;
+            padding: 5px 10px;
+            margin-bottom: 7px;
+            color: #1746a2;
+            background: #eaf1ff;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .explore {
+            margin-top: auto;
+            padding-top: 10px;
+            color: var(--secondary);
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .explore:hover { color: #10367f; }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            padding: 35px;
+            background: white;
+            border: 1px dashed #b9c9e1;
+            border-radius: 15px;
+            text-align: center;
+            color: var(--muted);
+        }
+
+        .notice {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            padding: 25px;
+            border: 1px solid #d8e6ff;
+            border-radius: 16px;
+            background: #eaf2ff;
+        }
+
+        .notice-icon { font-size: 29px; }
+        .notice h3 { margin: 0 0 6px; }
+        .notice p { margin: 0; color: #4f607a; font-size: 14px; }
+
+        .quick-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .quick-links a {
+            background: white;
+            border: 1px solid var(--border);
+            color: var(--primary);
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        footer {
+            margin-top: 55px;
+            padding: 35px 5%;
+            color: #dce7ff;
+            background: #102447;
+        }
+
+        .footer-inner {
+            max-width: 1150px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        footer h2 { color: white; margin: 0 0 8px; }
+        footer p { max-width: 500px; font-size: 13px; }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 15px; }
+        .footer-links a { color: white; font-size: 13px; }
+        .copyright {
+            max-width: 1150px;
+            margin: 25px auto 0;
+            padding-top: 17px;
+            border-top: 1px solid #ffffff25;
+            font-size: 12px;
+        }
+
+        @media (max-width: 850px) {
+            header { justify-content: center; }
+            nav { justify-content: center; }
+            .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .tools { grid-template-columns: 1fr 1fr; }
+            .reset-btn { grid-column: 1 / -1; }
+        }
+
+        @media (max-width: 540px) {
+            .hero { padding: 42px 25px; }
+            .hero::after { right: 5%; top: 8%; font-size: 65px; }
+            .stats { grid-template-columns: 1fr; }
+            .cards { grid-template-columns: 1fr; }
+            .tools { grid-template-columns: 1fr; }
+            .reset-btn { grid-column: auto; }
+            .section-heading h2 { font-size: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a class="logo" href="index.html" style="color:inherit">
+        <div class="logo-mark">G</div>
+        <div>
+            <h2>GovGuide</h2>
+            <p>Government Information Hub</p>
+        </div>
+    </a>
+
+    <nav aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="education.html">Education</a>
+        <a href="jobs.html">Jobs</a>
+        <a href="exams.html">Exams</a>
+        <a href="study.html">Study Material</a>
+        <a href="schemes.html">Schemes</a>
+        <a href="services.html">Services</a>
+    </nav>
+
+    <a href="login.html" class="login-btn">Login</a>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="eyebrow">🎓 Education Hub</div>
+        <h1>Build Your Future Through Education</h1>
+        <p>
+            Explore scholarship portals, courses, college information,
+            admissions and useful student resources in one place.
+        </p>
+        <a href="#education-directory" class="hero-link">Explore Education →</a>
+    </section>
+
+    <section class="stats" aria-label="Education features">
+        <div class="stat"><strong>06</strong><span>Information Categories</span></div>
+        <div class="stat"><strong>24 × 7</strong><span>Browse This Directory</span></div>
+        <div class="stat"><strong>Official</strong><span>Reference Links</span></div>
+    </section>
+
+    <section class="section" id="education-directory">
+        <div class="section-heading">
+            <h2>Explore Education Resources</h2>
+            <p>Search by keyword or choose a category to find relevant resources.</p>
+        </div>
+
+        <div class="tools">
+            <input id="educationSearch" type="search"
+                placeholder="🔎 Search scholarships, courses..."
+                aria-label="Search education resources">
+
+            <select id="educationCategory" aria-label="Filter by category">
+                <option value="all">All Categories</option>
+                <option value="scholarships">Scholarships</option>
+                <option value="colleges">Colleges</option>
+                <option value="courses">Courses</option>
+                <option value="admissions">Admissions</option>
+                <option value="government">Government Education</option>
+                <option value="resources">Student Resources</option>
+            </select>
+
+            <button class="reset-btn" id="resetEducation" type="button">Reset Filters</button>
+        </div>
+
+        <p class="result-count" id="educationResult" aria-live="polite">Showing 6 categories</p>
+
+        <div class="cards" id="educationCards">
+            <article class="card" data-category="scholarships">
+                <div class="card-icon">🎓</div>
+                <h3>Scholarships</h3>
+                <p>Explore scholarship schemes, eligibility details, application processes and student financial assistance.</p>
+                <span class="tag">FINANCIAL SUPPORT</span>
+                <a class="explore" href="https://scholarships.gov.in/" target="_blank" rel="noopener noreferrer">National Scholarship Portal ↗</a>
+                <a class="explore" href="https://scholarships.gujarat.gov.in/" target="_blank" rel="noopener noreferrer">Gujarat CM Scholarship ↗</a>
+            </article>
+
+            <article class="card" data-category="colleges">
+                <div class="card-icon">🏫</div>
+                <h3>Colleges & Institutions</h3>
+                <p>Find higher education information and learn about recognised institutions and available programmes.</p>
+                <span class="tag">HIGHER EDUCATION</span>
+                <a class="explore" href="https://www.ugc.gov.in/" target="_blank" rel="noopener noreferrer">University Grants Commission ↗</a>
+            </article>
+
+            <article class="card" data-category="courses">
+                <div class="card-icon">📚</div>
+                <h3>Courses & Qualifications</h3>
+                <p>Explore higher education, technical education and course-related information for future study choices.</p>
+                <span class="tag">COURSE INFORMATION</span>
+                <a class="explore" href="https://www.aicte-india.org/" target="_blank" rel="noopener noreferrer">AICTE Official Website ↗</a>
+                <a class="explore" href="https://www.ugc.gov.in/" target="_blank" rel="noopener noreferrer">UGC Official Website ↗</a>
+            </article>
+
+            <article class="card" data-category="admissions">
+                <div class="card-icon">📝</div>
+                <h3>Admissions</h3>
+                <p>Check admission-related announcements, eligibility requirements and application information from official sources.</p>
+                <span class="tag">APPLICATION GUIDANCE</span>
+                <a class="explore" href="https://www.gujarat.gov.in/" target="_blank" rel="noopener noreferrer">Gujarat Government Portal ↗</a>
+            </article>
+
+            <article class="card" data-category="government">
+                <div class="card-icon">🏛️</div>
+                <h3>Government Education</h3>
+                <p>Discover government education services, student support programmes and official information portals.</p>
+                <span class="tag">GOVERNMENT SERVICES</span>
+                <a class="explore" href="https://www.india.gov.in/" target="_blank" rel="noopener noreferrer">National Portal of India ↗</a>
+                <a class="explore" href="https://www.education.gov.in/" target="_blank" rel="noopener noreferrer">Ministry of Education ↗</a>
+            </article>
+
+            <article class="card" data-category="resources">
+                <div class="card-icon">💡</div>
+                <h3>Student Resources</h3>
+                <p>Access educational information, learning resources and useful government websites to support your studies.</p>
+                <span class="tag">LEARNING SUPPORT</span>
+                <a class="explore" href="https://www.swayam.gov.in/" target="_blank" rel="noopener noreferrer">SWAYAM Learning Portal ↗</a>
+                <a class="explore" href="https://diksha.gov.in/" target="_blank" rel="noopener noreferrer">DIKSHA Learning Portal ↗</a>
+            </article>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="notice">
+            <div class="notice-icon">📢</div>
+            <div>
+                <h3>Important Notice</h3>
+                <p>
+                    GovGuide is a student information project and is not an official
+                    government website. Scholarship eligibility, admission dates and
+                    requirements may change. Always verify details on the relevant
+                    official portal before applying.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-heading">
+            <h2>Quick Access</h2>
+            <p>Visit these official education and government resources.</p>
+        </div>
+        <div class="quick-links">
+            <a href="https://scholarships.gov.in/" target="_blank" rel="noopener noreferrer">Scholarship Portal ↗</a>
+            <a href="https://www.education.gov.in/" target="_blank" rel="noopener noreferrer">Ministry of Education ↗</a>
+            <a href="https://www.ugc.gov.in/" target="_blank" rel="noopener noreferrer">UGC ↗</a>
+            <a href="https://www.aicte-india.org/" target="_blank" rel="noopener noreferrer">AICTE ↗</a>
+            <a href="https://www.swayam.gov.in/" target="_blank" rel="noopener noreferrer">SWAYAM ↗</a>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <div>
+            <h2>GovGuide</h2>
+            <p>Your guide to government information, education, jobs, exams and useful citizen services.</p>
+        </div>
+        <div>
+            <h3>Quick Links</h3>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="education.html">Education</a>
+                <a href="jobs.html">Jobs</a>
+                <a href="exams.html">Exams</a>
+                <a href="study.html">Study Material</a>
+                <a href="schemes.html">Schemes</a>
+                <a href="services.html">Services</a>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">© 2026 GovGuide. Student Web Development Project.</div>
+</footer>
+
+<script>
+    const searchInput = document.getElementById("educationSearch");
+    const categorySelect = document.getElementById("educationCategory");
+    const cards = Array.from(document.querySelectorAll("#educationCards .card"));
+    const resultText = document.getElementById("educationResult");
+    const resetButton = document.getElementById("resetEducation");
+
+    function filterEducation() {
+        const query = searchInput.value.trim().toLowerCase();
+        const category = categorySelect.value;
+        let count = 0;
+
+        cards.forEach(function(card) {
+            const matchesText = card.textContent.toLowerCase().includes(query);
+            const matchesCategory =
+                category === "all" || card.dataset.category === category;
+            const visible = matchesText && matchesCategory;
+
+            card.hidden = !visible;
+            if (visible) count++;
+        });
+
+        resultText.textContent = count === 0
+            ? "No matching resources found. Try another search."
+            : "Showing " + count + " of " + cards.length + " categories";
+    }
+
+    searchInput.addEventListener("input", filterEducation);
+    categorySelect.addEventListener("change", filterEducation);
+
+    resetButton.addEventListener("click", function() {
+        searchInput.value = "";
+        categorySelect.value = "all";
+        filterEducation();
+        searchInput.focus();
+    });
+
+    filterEducation();
+</script>
+
+</body>
+</html>

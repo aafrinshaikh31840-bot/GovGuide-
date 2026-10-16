@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GovGuide | Government Information Portal</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            <div class="logo-icon">G</div>
+
+            <div>
+                <h2>Gov<span>Guide</span></h2>
+                <small>Government Information Hub</small>
+            </div>
+        </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#education">Education</a>
+            <a href="#jobs">Jobs</a>
+            <a href="#exams">Exams</a>
+            <a href="#study">Study Material</a>
+            <a href="#schemes">Schemes</a>
+        </nav>
+
+        <button class="login-btn" onclick="loginMessage()">
+            Login
+        </button>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="tag">
+                🇮🇳 ONE PLATFORM • MULTIPLE GOVERNMENT RESOURCES
+            </div>
+
+            <h1>
+                Everything Government,
+                <span>In One Place.</span>
+            </h1>
+
+            <p>
+                Discover government jobs, exams, education opportunities,
+                study materials, schemes and useful citizen services.
+            </p>
+
+
+            <!-- SEARCH -->
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search jobs, exams, schemes, scholarships..."
+                >
+
+                <button onclick="searchWebsite()">
+                    🔍 Search
+                </button>
+
+            </div>
+
+
+            <div class="popular">
+
+                <span>Popular:</span>
+
+                <button onclick="quickSearch('Government Jobs')">
+                    Government Jobs
+                </button>
+
+                <button onclick="quickSearch('SSC')">
+                    SSC
+                </button>
+
+                <button onclick="quickSearch('Scholarship')">
+                    Scholarships
+                </button>
+
+                <button onclick="quickSearch('UPSC')">
+                    UPSC
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- HERO CARD -->
+
+        <div class="hero-card">
+
+            <div class="card-header">
+
+                <span>🇮🇳</span>
+
+                <span class="live">
+                    ● LIVE
+                </span>
+
+            </div>
+
+            <h3>GovGuide Updates</h3>
+
+            <div class="update">
+
+                <div class="update-icon">💼</div>
+
+                <div>
+                    <strong>Government Jobs</strong>
+                    <p>Explore job opportunities</p>
+                </div>
+
+            </div>
+
+
+            <div class="update">
+
+                <div class="update-icon">📝</div>
+
+                <div>
+                    <strong>Government Exams</strong>
+                    <p>Exam information & syllabus</p>
+                </div>
+
+            </div>
+
+
+            <div class="update">
+
+                <div class="update-icon">🎓</div>
+
+                <div>
+                    <strong>Education</strong>
+                    <p>Scholarships & courses</p>
+                </div>
+
+            </div>
+
+
+            <button
+                class="explore-btn"
+                onclick="scrollToCategories()"
+            >
+                Explore GovGuide →
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CATEGORIES ================= -->
+
+    <section class="section" id="education">
+
+        <div class="section-heading">
+
+            <span>EXPLORE GOVGUIDE</span>
+
+            <h2>
+                What are you looking for?
+            </h2>
+
+            <p>
+                Find government information according to your needs.
+            </p>
+
+        </div>
+
+
+        <div class="category-grid">
+
+
+            <!-- EDUCATION -->
+
+            <div class="category-card">
+
+                <div class="category-icon">
+                    🎓
+                </div>
+
+                <h3>Education</h3>
+
+                <p>
+                    Explore scholarships, courses,
+                    colleges and education opportunities.
+                </p>
+
+                <button onclick="comingSoon('Education')">
+                    Explore →
+                </button>
+
+            </div>
+
+
+            <!-- JOBS -->
+
+            <div class="category-card">
+
+                <div class="category-icon">
+                    💼
+                </div>
+
+                <h3>Government Jobs</h3>
+
+                <p>
+                    Find vacancies, eligibility,
+                    deadlines and recruitment information.
+                </p>
+
+                <button onclick="comingSoon('Government Jobs')">
+                    Explore →
+                </button>
+
+            </div>
+
+
+            <!-- EXAMS -->
+
+            <div class="category-card">
+
+                <div class="category-icon">
+                    📝
+                </div>
+
+                <h3>Government Exams</h3>
+
+                <p>
+                    Learn exam patterns, syllabus,
+                    dates and preparation information.
+                </p>
+
+                <button onclick="comingSoon('Government Exams')">
+                    Explore →
+                </button>
+
+            </div>
+
+
+            <!-- STUDY -->
+
+            <div class="category-card">
+
+                <div class="category-icon">
+                    📚
+                </div>
+
+                <h3>Study Material</h3>
+
+                <p>
+                    Notes, MCQs, previous papers
+                    and preparation resources.
+                </p>
+
+                <button onclick="comingSoon('Study Material')">
+                    Start Learning →
+                </button>
+
+            </div>
+
+
+            <!-- SCHEMES -->
+
+            <div class="category-card">
+
+                <div class="category-icon">
+                    🏛️
+                </div>
+
+                <h3>Government Schemes</h3>
+
+                <p>
+                    Understand eligibility, benefits
+                    and application procedures.
+                </p>
+
+                <button onclick="comingSoon('Government Schemes')">
+                    View Schemes →
+                </button>
+
+            </div>
+
+
+            <!-- SERVICES -->
+
+            <div class="category-card">
+
+                <div class="category-icon">
+                    📄
+                </div>
+
+                <h3>Citizen Services</h3>
+
+                <p>
+                    Find information about important
+                    government documents and services.
+                </p>
+
+                <button onclick="comingSoon('Citizen Services')">
+                    View Services →
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= JOB SECTION ================= -->
+
+    <section class="section light" id="jobs">
+
+        <div class="section-heading">
+
+            <span>CAREER</span>
+
+            <h2>
+                Government Job Categories
+            </h2>
+
+            <p>
+                Explore different government recruitment areas.
+            </p>
+
+        </div>
+
+
+        <div class="job-grid">
+
+            <div class="job-card">
+
+                <div class="job-icon">
+                    SSC
+                </div>
+
+                <div>
+                    <h3>SSC Recruitment</h3>
+
+                    <p>
+                        Staff Selection Commission
+                    </p>
+
+                    <small>
+                        10th / 12th / Graduate
+                    </small>
+                </div>
+
+            </div>
+
+
+            <div class="job-card">
+
+                <div class="job-icon">
+                    UPSC
+                </div>
+
+                <div>
+                    <h3>UPSC Exams</h3>
+
+                    <p>
+                        Union Public Service Commission
+                    </p>
+
+                    <small>
+                        Graduate
+                    </small>
+                </div>
+
+            </div>
+
+
+            <div class="job-card">
+
+                <div class="job-icon">
+                    🚆
+                </div>
+
+                <div>
+                    <h3>Railway Jobs</h3>
+
+                    <p>
+                        Indian Railways
+                    </p>
+
+                    <small>
+                        Multiple Qualifications
+                    </small>
+                </div>
+
+            </div>
+
+
+            <div class="job-card">
+
+                <div class="job-icon">
+                    🏦
+                </div>
+
+                <div>
+                    <h3>Banking Jobs</h3>
+
+                    <p>
+                        Government Banking Opportunities
+                    </p>
+
+                    <small>
+                        Graduate
+                    </small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= EXAMS ================= -->
+
+    <section class="section" id="exams">
+
+        <div class="section-heading">
+
+            <span>PREPARE</span>
+
+            <h2>
+                Popular Government Exams
+            </h2>
+
+            <p>
+                Learn about government examinations.
+            </p>
+
+        </div>
+
+
+        <div class="exam-grid">
+
+            <div class="exam-card">
+
+                <span>01</span>
+
+                <h3>SSC Exams</h3>
+
+                <p>
+                    Exam information, eligibility
+                    and preparation resources.
+                </p>
+
+                <button onclick="comingSoon('SSC Exams')">
+                    Learn More →
+                </button>
+
+            </div>
+
+
+            <div class="exam-card">
+
+                <span>02</span>
+
+                <h3>UPSC</h3>
+
+                <p>
+                    Understand exam structure,
+                    syllabus and preparation.
+                </p>
+
+                <button onclick="comingSoon('UPSC')">
+                    Learn More →
+                </button>
+
+            </div>
+
+
+            <div class="exam-card">
+
+                <span>03</span>
+
+                <h3>Railway Exams</h3>
+
+                <p>
+                    Explore railway recruitment
+                    examination information.
+                </p>
+
+                <button onclick="comingSoon('Railway Exams')">
+                    Learn More →
+                </button>
+
+            </div>
+
+
+            <div class="exam-card">
+
+                <span>04</span>
+
+                <h3>Banking Exams</h3>
+
+                <p>
+                    Explore banking examination
+                    categories and preparation.
+                </p>
+
+                <button onclick="comingSoon('Banking Exams')">
+                    Learn More →
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= STUDY MATERIAL ================= -->
+
+    <section class="study-section" id="study">
+
+        <div class="study-content">
+
+            <span>LEARN</span>
+
+            <h2>
+                Prepare Smarter with
+                <strong>Study Material</strong>
+            </h2>
+
+            <p>
+                Access organized learning resources
+                for government exam preparation.
+            </p>
+
+
+            <div class="subjects">
+
+                <div>✓ General Knowledge</div>
+                <div>✓ Current Affairs</div>
+                <div>✓ Mathematics</div>
+                <div>✓ Reasoning</div>
+                <div>✓ English</div>
+                <div>✓ Computer</div>
+
+            </div>
+
+
+            <button
+                class="main-btn"
+                onclick="comingSoon('Study Material')"
+            >
+                Explore Study Material
+            </button>
+
+        </div>
+
+
+        <div class="study-card">
+
+            <div class="book">
+                📚
+            </div>
+
+            <h3>
+                Smart Preparation
+            </h3>
+
+            <p>
+                Notes • MCQs • Mock Tests
+            </p>
+
+            <div class="progress">
+
+                <div></div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SCHEMES ================= -->
+
+    <section class="section" id="schemes">
+
+        <div class="section-heading">
+
+            <span>CITIZEN BENEFITS</span>
+
+            <h2>
+                Government Schemes
+            </h2>
+
+            <p>
+                Learn about government schemes and their requirements.
+            </p>
+
+        </div>
+
+
+        <div class="scheme-grid">
+
+
+            <div class="scheme-card">
+
+                <div>🎓</div>
+
+                <h3>Education Schemes</h3>
+
+                <p>
+                    Scholarships and education opportunities.
+                </p>
+
+                <button onclick="comingSoon('Education Schemes')">
+                    Explore →
+                </button>
+
+            </div>
+
+
+            <div class="scheme-card">
+
+                <div>🌾</div>
+
+                <h3>Farmer Schemes</h3>
+
+                <p>
+                    Agriculture-related government programs.
+                </p>
+
+                <button onclick="comingSoon('Farmer Schemes')">
+                    Explore →
+                </button>
+
+            </div>
+
+
+            <div class="scheme-card">
+
+                <div>🏠</div>
+
+                <h3>Housing Schemes</h3>
+
+                <p>
+                    Government housing-related programs.
+                </p>
+
+                <button onclick="comingSoon('Housing Schemes')">
+                    Explore →
+                </button>
+
+            </div>
+
+
+            <div class="scheme-card">
+
+                <div>💰</div>
+
+                <h3>Financial Schemes</h3>
+
+                <p>
+                    Government financial support programs.
+                </p>
+
+                <button onclick="comingSoon('Financial Schemes')">
+                    Explore →
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div class="footer-logo">
+                <h2>Gov<span>Guide</span></h2>
+
+                <p>
+                    Your guide to government information,
+                    opportunities and services.
+                </p>
+            </div>
+
+
+            <div>
+                <h3>Explore</h3>
+
+                <a href="#education">Education</a>
+                <a href="#jobs">Jobs</a>
+                <a href="#exams">Exams</a>
+                <a href="#study">Study Material</a>
+            </div>
+
+
+            <div>
+                <h3>Information</h3>
+
+                <a href="#schemes">Government Schemes</a>
+                <a href="#">Citizen Services</a>
+                <a href="#">Notifications</a>
+                <a href="#">About GovGuide</a>
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 GovGuide. Student Web Development Project.
+            </p>
+
+            <p>
+                Information should be verified from official government sources.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>

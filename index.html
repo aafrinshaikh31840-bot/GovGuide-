@@ -1,0 +1,1500 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GovGuide - Government jobs, education, exams, schemes and citizen services in one place.">
+    <title>GovGuide | Government Information Hub</title>
+
+    <!-- Connect external CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Main website styling -->
+    <style>
+        :root {
+            --primary: #174ea6;
+            --primary-dark: #103675;
+            --accent: #ff9b35;
+            --bg: #f5f8ff;
+            --text: #18243b;
+            --muted: #667085;
+            --white: #ffffff;
+            --border: #e4eaf4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button, input, select, textarea {
+            font: inherit;
+        }
+
+        .container {
+            width: min(1150px, 92%);
+            margin: auto;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: var(--white);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 15px rgba(20, 50, 100, 0.08);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            color: var(--primary);
+            font-size: 28px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .login-btn {
+            background: var(--primary);
+            color: white !important;
+            padding: 10px 18px;
+            border-radius: 9px;
+        }
+
+        .menu-toggle {
+            display: none;
+            border: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 80px 0;
+            background:
+                radial-gradient(circle at 90% 20%, #d9e7ff 0, transparent 30%),
+                linear-gradient(135deg, #edf4ff, #ffffff 65%, #fff3e3);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            align-items: center;
+            gap: 45px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            background: #e0ebff;
+            color: var(--primary);
+            padding: 7px 14px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(35px, 5vw, 58px);
+            line-height: 1.13;
+            margin-bottom: 20px;
+            letter-spacing: -1.5px;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 17px;
+            color: var(--muted);
+            max-width: 590px;
+            margin-bottom: 28px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 13px;
+        }
+
+        .btn {
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            padding: 13px 21px;
+            border-radius: 9px;
+            font-weight: bold;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background: white;
+            color: var(--primary);
+            border: 1px solid #b9cbea;
+        }
+
+        .hero-visual {
+            background: linear-gradient(145deg, #174ea6, #4c85d9);
+            color: white;
+            border-radius: 28px;
+            padding: 30px;
+            box-shadow: 0 22px 45px rgba(23, 78, 166, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-visual::after {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            right: -55px;
+            top: -65px;
+        }
+
+        .visual-icon {
+            font-size: 62px;
+            margin-bottom: 15px;
+        }
+
+        .hero-visual h2 {
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .hero-visual p {
+            color: #e3edff;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        .quick-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255,255,255,0.12);
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .quick-item span {
+            font-size: 23px;
+        }
+
+        /* QUICK SEARCH */
+        .search-area {
+            margin-top: -25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .search-box {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            gap: 12px;
+            box-shadow: 0 12px 35px rgba(20, 50, 100, 0.08);
+        }
+
+        .search-box input {
+            flex: 1;
+            min-width: 0;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            padding: 13px;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary);
+        }
+
+        /* COMMON SECTIONS */
+        section {
+            scroll-margin-top: 90px;
+        }
+
+        .section {
+            padding: 75px 0;
+        }
+
+        .section-heading {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 35px;
+        }
+
+        .section-heading .small-title {
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(27px, 4vw, 37px);
+            margin: 8px 0 12px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+        }
+
+        /* CARDS */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 25px;
+            border-radius: 17px;
+            border: 1px solid var(--border);
+            transition: 0.25s;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(20, 50, 100, 0.09);
+            border-color: #c3d6f5;
+        }
+
+        .card-icon {
+            width: 58px;
+            height: 58px;
+            display: grid;
+            place-items: center;
+            background: #edf3ff;
+            border-radius: 14px;
+            font-size: 29px;
+            margin-bottom: 17px;
+        }
+
+        .info-card h3 {
+            font-size: 20px;
+            margin-bottom: 9px;
+        }
+
+        .info-card p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 17px;
+        }
+
+        .card-link {
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: auto;
+        }
+
+        /* FEATURE STRIP */
+        .feature-strip {
+            background: #eaf1ff;
+            padding: 32px 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            text-align: center;
+        }
+
+        .feature-grid h3 {
+            color: var(--primary);
+            font-size: 19px;
+            margin-bottom: 5px;
+        }
+
+        .feature-grid p {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        /* JOBS */
+        .jobs-section {
+            background: white;
+        }
+
+        .job-card {
+            border-top: 4px solid var(--primary);
+        }
+
+        .job-tag {
+            display: inline-block;
+            background: #fff0db;
+            color: #8b4a00;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        /* CONTACT */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .contact-info {
+            background: linear-gradient(145deg, #174ea6, #103675);
+            color: white;
+            border-radius: 18px;
+            padding: 30px;
+        }
+
+        .contact-info h3 {
+            font-size: 25px;
+            margin-bottom: 12px;
+        }
+
+        .contact-info p {
+            color: #e1eaff;
+            margin-bottom: 22px;
+        }
+
+        .contact-point {
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .contact-form {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 28px;
+        }
+
+        .contact-form h3 {
+            margin-bottom: 6px;
+            font-size: 24px;
+        }
+
+        .form-note {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+            width: 100%;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d8dfeb;
+            border-radius: 8px;
+            outline: none;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            min-height: 125px;
+            resize: vertical;
+        }
+
+        .full-width {
+            width: 100%;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #102341;
+            color: white;
+            padding: 45px 0 18px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer h3,
+        .footer h4 {
+            margin-bottom: 13px;
+        }
+
+        .footer p,
+        .footer a {
+            color: #d0daeb;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #35445d;
+            padding-top: 18px;
+            text-align: center;
+            color: #d0daeb;
+            font-size: 13px;
+        }
+
+        .disclaimer {
+            font-size: 12px;
+            color: #c0cee2;
+            margin-top: 12px;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1000px) {
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+            }
+
+            .hero-content {
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-content {
+                flex-wrap: wrap;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding-top: 10px;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 11px 5px;
+                border-top: 1px solid var(--border);
+                font-size: 15px;
+            }
+
+            .nav-links .login-btn {
+                text-align: center;
+                margin-top: 8px;
+            }
+
+            .hero {
+                padding: 55px 0;
+            }
+
+            .hero-content,
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-visual {
+                max-width: 520px;
+            }
+
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .logo {
+                font-size: 24px;
+            }
+
+            .hero h1 {
+                letter-spacing: -0.5px;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .cards-grid,
+            .feature-grid,
+            .footer-grid,
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 55px 0;
+            }
+
+            .info-card,
+            .contact-form,
+            .contact-info {
+                padding: 22px;
+            }
+        }
+    </style>
+<style id="govguide-button-design">
+.gov-home-btn,.gov-logout-btn {
+  display:block;
+  min-width:190px;
+  margin:14px auto;
+  padding:13px 25px;
+  border-radius:12px;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  transition:all .25s ease;
+}
+.gov-home-btn {
+  color:white;
+  background:linear-gradient(135deg,#174ea6,#4285f4);
+  border:2px solid #174ea6;
+  box-shadow:0 5px 14px #174ea633;
+}
+.gov-home-btn:hover {
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px #174ea655;
+}
+.gov-logout-btn {
+  color:#d93025;
+  background:white;
+  border:2px solid #d93025;
+}
+.gov-logout-btn:hover {
+  color:white;
+  background:#d93025;
+  transform:translateY(-2px);
+}
+@media(max-width:480px) {
+  .gov-home-btn,.gov-logout-btn {
+    width:90%;
+    max-width:280px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="#home" class="logo">Gov<span>Guide</span></a>
+
+            <button class="menu-toggle" id="menuToggle"
+                    aria-label="Toggle navigation" aria-expanded="false">
+                ☰ Menu
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="#home">Home</a>
+                <a href="#education">Education</a>
+                <a href="#jobs">Jobs</a>
+                <a href="#exams">Exams</a>
+                <a href="#study">Study Material</a>
+                <a href="#schemes">Schemes</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact Us</a>
+                <a href="login.html" class="login-btn" id="homeLoginLink">Login / Sign Up</a>
+<button type="button" id="homeLogoutBtn" style="display:none;background:linear-gradient(135deg,#ff416c,#e11d48);color:white;border:0;border-radius:10px;padding:11px 20px;font-weight:700;cursor:pointer;box-shadow:0 4px 12px rgba(225,29,72,0.3);transition:all 0.3s ease;">Logout</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero" id="home">
+            <div class="container hero-content">
+                <div>
+                    <span class="eyebrow">YOUR GOVERNMENT INFORMATION HUB</span>
+
+                    <h1>
+                        Your Future,<br>
+                        Your Rights, <span>Your Guide.</span>
+                    </h1>
+
+                    <p>
+                        Find government job updates, education information,
+                        exam preparation, study materials, schemes and citizen
+                        services—all in one convenient place.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="#jobs" class="btn btn-primary">Explore Government Jobs →</a>
+                        <a href="#services" class="btn btn-outline">Explore Services</a>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="visual-icon">🏛️</div>
+                    <h2>Everything in One Place</h2>
+                    <p>
+                        Information to help students and citizens find
+                        useful government resources.
+                    </p>
+
+                    <div class="quick-item">
+                        <span>🎓</span>
+                        <div>
+                            <strong>Education & Learning</strong><br>
+                            <small>Courses, exams and study resources</small>
+                        </div>
+                    </div>
+
+                    <div class="quick-item">
+                        <span>💼</span>
+                        <div>
+                            <strong>Career Opportunities</strong><br>
+                            <small>Explore government job information</small>
+                        </div>
+                    </div>
+
+                    <div class="quick-item">
+                        <span>📋</span>
+                        <div>
+                            <strong>Public Information</strong><br>
+                            <small>Schemes and citizen services</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEARCH -->
+        <div class="container search-area">
+            <form class="search-box" id="searchForm">
+                <input type="search" id="siteSearch"
+                       placeholder="Search jobs, exams, education, schemes..."
+                       aria-label="Search GovGuide sections">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+        </div>
+
+        <!-- FEATURES -->
+        <section class="feature-strip">
+            <div class="container feature-grid">
+                <div>
+                    <h3>🎯 Easy to Explore</h3>
+                    <p>Information organised by category</p>
+                </div>
+                <div>
+                    <h3>📚 Learning Support</h3>
+                    <p>Study resources and exam information</p>
+                </div>
+                <div>
+                    <h3>🔎 Helpful Resources</h3>
+                    <p>Links to official government websites</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCATION -->
+        <section class="section" id="education">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="small-title">Learn and Grow</span>
+                    <h2>Education & Learning</h2>
+                    <p>
+                        Explore education pathways, scholarships and
+                        learning opportunities for your future.
+                    </p>
+                </div>
+
+                <div class="cards-grid">
+                    <article class="info-card">
+                        <div class="card-icon">🎓</div>
+                        <h3>Courses & Colleges</h3>
+                        <p>Explore courses, qualifications and college-related information.</p>
+                        <a class="card-link" href="education.html">Explore Education →</a>
+                    </article>
+
+                    <article class="info-card">
+                        <div class="card-icon">💰</div>
+                        <h3>Scholarships</h3>
+                        <p>Learn about scholarship opportunities and eligibility requirements.</p>
+                        <a class="card-link" href="#schemes">Explore Schemes →</a>
+                    </article>
+
+                    <article class="info-card">
+                        <div class="card-icon">📖</div>
+                        <h3>Study Resources</h3>
+                        <p>Find learning resources to support your studies and exam preparation.</p>
+                        <a class="card-link" href="#study">View Study Material →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- JOBS -->
+        <section class="section jobs-section" id="jobs">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="small-title">Build Your Career</span>
+                    <h2>Government Jobs</h2>
+                    <p>
+                        Discover different government recruitment categories.
+                        Always verify current vacancies through official notifications.
+                    </p>
+                </div>
+
+                <div class="cards-grid">
+                    <article class="info-card job-card">
+                        <span class="job-tag">10th / 12th / Graduate</span>
+                        <div class="card-icon">🏢</div>
+                        <h3>SSC Recruitment</h3>
+                        <p>Explore information about SSC examinations, eligibility and preparation.</p>
+                        <a class="card-link" href="jobs.html">Explore Jobs →</a>
+                    </article>
+
+                    <article class="info-card job-card">
+                        <span class="job-tag">Graduate</span>
+                        <div class="card-icon">🇮🇳</div>
+                        <h3>UPSC Examinations</h3>
+                        <p>Understand civil services examinations and their general requirements.</p>
+                        <a class="card-link" href="jobs.html">Explore Jobs →</a>
+                    </article>
+
+                    <article class="info-card job-card">
+                        <span class="job-tag">Various Qualifications</span>
+                        <div class="card-icon">🚆</div>
+                        <h3>Railway Recruitment</h3>
+                        <p>Explore railway recruitment information, examinations and notices.</p>
+                        <a class="card-link" href="jobs.html">Explore Jobs →</a>
+                    </article>
+
+                    <article class="info-card job-card">
+                        <span class="job-tag">Graduate / As Notified</span>
+                        <div class="card-icon">🏦</div>
+                        <h3>Banking Jobs</h3>
+                        <p>Learn about banking recruitment, exam patterns and eligibility.</p>
+                        <a class="card-link" href="jobs.html">Explore Jobs →</a>
+                    </article>
+
+                    <article class="info-card job-card">
+                        <span class="job-tag">State Recruitment</span>
+                        <div class="card-icon">📑</div>
+                        <h3>State Government Jobs</h3>
+                        <p>Explore state-level recruitment and public service opportunities.</p>
+                        <a class="card-link" href="jobs.html">Explore Jobs →</a>
+                    </article>
+
+                    <article class="info-card job-card">
+                        <span class="job-tag">Official Updates</span>
+                        <div class="card-icon">🔔</div>
+                        <h3>Recruitment Notifications</h3>
+                        <p>Use official recruitment portals to check dates, vacancies and notices.</p>
+                        <a class="card-link" href="jobs.html">View Information →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXAMS -->
+        <section class="section" id="exams">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="small-title">Prepare with Confidence</span>
+                    <h2>Competitive Exams</h2>
+                    <p>Understand examination patterns, eligibility and preparation basics.</p>
+                </div>
+
+                <div class="cards-grid">
+                    <article class="info-card">
+                        <div class="card-icon">📝</div>
+                        <h3>Exam Information</h3>
+                        <p>Explore general information about government competitive examinations.</p>
+                        <a class="card-link" href="exams.html">Learn More →</a>
+                    </article>
+
+                    <article class="info-card">
+                        <div class="card-icon">📅</div>
+                        <h3>Exam Calendar</h3>
+                        <p>Check official exam calendars and notifications for updated dates.</p>
+                        <a class="card-link" href="exams.html">View Exam Details →</a>
+                    </article>
+
+                    <article class="info-card">
+                        <div class="card-icon">✅</div>
+                        <h3>Eligibility & Syllabus</h3>
+                        <p>Review the age, qualification, syllabus and selection details in official notices.</p>
+                        <a class="card-link" href="exams.html">Explore Exams →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- STUDY MATERIAL -->
+        <section class="section jobs-section" id="study">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="small-title">Study Smart</span>
+                    <h2>Study Material</h2>
+                    <p>Organise your preparation with useful learning resources.</p>
+                </div>
+
+                <div class="cards-grid">
+                    <article class="info-card">
+                        <div class="card-icon">📚</div>
+                        <h3>Notes & Guides</h3>
+                        <p>Explore notes and subject-wise preparation resources.</p>
+                        <a class="card-link" href="study.html">Open Study Material →</a>
+                    </article>
+
+                    <article class="info-card">
+                        <div class="card-icon">🧠</div>
+                        <h3>Practice Questions</h3>
+                        <p>Use practice questions to revise important concepts.</p>
+                        <a class="card-link" href="study.html">Start Learning →</a>
+                    </article>
+
+                    <article class="info-card">
+                        <div class="card-icon">📄</div>
+                        <h3>Previous Papers</h3>
+                        <p>Look for previous question papers published by official or authorised sources.</p>
+                        <a class="card-link" href="study.html">Explore Resources →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCHEMES -->
+        <section class="section" id="schemes">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="small-title">Know Your Opportunities</span>
+                    <h2>Government Schemes</h2>
+                    <p>
+                        Learn about scheme categories, eligibility and application processes.
+                        Confirm the latest details on official portals.
+                    </p>
+                </div>
+
+                <div class="cards-grid">
+                    <article class="info-card">
+                        <div class="card-icon">🎓</div>
+                        <h3>Student Schemes</h3>
+                        <p>Explore scholarship and student support scheme information.</p>
+                        <a class="card-link" href="schemes.html">Explore Schemes →</a>
+                    </article>
+
+                    <article class="info-card">
+                        <div class="card-icon">👨‍👩‍👧</div>
+                        <h3>Family & Social Support</h3>
+                        <p>Learn about welfare schemes and their published eligibility criteria.</p>
+                        <a class="card-link" href="schemes.html">Learn More →</a>
+                    </article>
+
+                    <article class="info-card">
+                        <div class="card-icon">🌾</div>
+                        <h3>Citizen & Rural Support</h3>
+                        <p>Explore information about rural development and citizen support programmes.</p>
+                        <a class="card-link" href="schemes.html">View Information →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CITIZEN SERVICES -->
+        <section class="section jobs-section" id="services">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="small-title">Public Information</span>
+                    <h2>Citizen Services</h2>
+                    <p>Find information about common public services and where to access them.</p>
+                </div>
+
+                <div class="cards-grid">
+                    <article class="info-card">
+                        <div class="card-icon">🪪</div>
+                        <h3>Identity & Certificates</h3>
+                        <p>Find guidance about identity documents and certificate services.</p>
+                        <a class="card-link" href="services.html">Explore Services →</a>
+                    </article>
+
+                    <article class="info-card">
+                        <div class="card-icon">💻</div>
+                        <h3>Online Government Portals</h3>
+                        <p>Learn where to find online government services and application portals.</p>
+                        <a class="card-link" href="services.html">Visit Services →</a>
+                    </article>
+
+                    <article class="info-card">
+                        <div class="card-icon">📢</div>
+                        <h3>Help & Public Information</h3>
+                        <p>Find official information sources and useful public-service links.</p>
+                        <a class="card-link" href="#contact">Ask a Question →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT US -->
+        <section class="section" id="contact">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="small-title">We Welcome Your Feedback</span>
+                    <h2>Contact GovGuide</h2>
+                    <p>
+                        Have a question, suggestion or complaint about this website?
+                        Send us your message using the form.
+                    </p>
+                </div>
+
+                <div class="contact-layout">
+                    <div class="contact-info">
+                        <h3>Let's Connect!</h3>
+                        <p>
+                            Your feedback can help improve the information and
+                            usability of the GovGuide project.
+                        </p>
+
+                        <div class="contact-point">
+                            <strong>💬 Ask a Question</strong><br>
+                            <span>Share your query about website information.</span>
+                        </div>
+
+                        <div class="contact-point">
+                            <strong>📣 Submit a Complaint</strong><br>
+                            <span>Report incorrect content or a website issue.</span>
+                        </div>
+
+                        <div class="contact-point">
+                            <strong>💡 Give Feedback</strong><br>
+                            <span>Suggest new features or improvements.</span>
+                        </div>
+
+                        <p class="disclaimer">
+                            GovGuide is an informational student project, not an
+                            official government department.
+                        </p>
+                    </div>
+
+                    <form class="contact-form" id="contactForm">
+                        <h3>Send Us a Message</h3>
+                        <p class="form-note">
+                            Fields marked * are required.
+                        </p>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" name="fullName"
+                                       placeholder="Enter your name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email"
+                                       placeholder="Enter your email" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="messageType">Message Type *</label>
+                            <select id="messageType" name="messageType" required>
+                                <option value="">Select a category</option>
+                                <option value="Question">Ask a Question</option>
+                                <option value="Complaint">Submit a Complaint</option>
+                                <option value="Feedback">Give Feedback</option>
+                                <option value="Suggestion">Suggest a Feature</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <input type="text" id="subject" name="subject"
+                                   placeholder="Enter the subject" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Your Message *</label>
+                            <textarea id="message" name="message"
+                                      placeholder="Write your question, complaint or feedback..."
+                                      required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary full-width">
+                            Submit Message →
+                        </button>
+
+                        <p class="form-note" style="margin-top: 12px; margin-bottom: 0;">
+                            Demo form: messages are not stored or sent until a
+                            backend or form service is connected.
+                        </p>
+
+                        <p id="formStatus" role="status" aria-live="polite"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+  
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+
+            <!-- ABOUT GOVGUIDE -->
+            <div>
+                <h3 class="logo" style="color:white;">
+                    Gov<span>Guide</span>
+                </h3>
+
+                <p>
+                    A single platform for government jobs, education,
+                    competitive exams, study material, schemes and
+                    citizen services.
+                </p>
+
+                <p class="disclaimer">
+                    GovGuide is an independent student project and is
+                    not affiliated with any government department.
+                </p>
+            </div>
+
+            <!-- QUICK LINKS -->
+            <div>
+                <h4>Quick Links</h4>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#education">Education</a>
+                    <a href="#jobs">Government Jobs</a>
+                    <a href="#exams">Competitive Exams</a>
+                    <a href="#study">Study Material</a>
+                </div>
+            </div>
+
+            <!-- MORE INFORMATION -->
+            <div>
+                <h4>More Information</h4>
+                <div class="footer-links">
+                    <a href="#schemes">Government Schemes</a>
+                    <a href="#services">Citizen Services</a>
+                    <a href="#contact">Contact Us</a>
+                    <a href="login.html">Admin / User Login</a>
+                </div>
+            </div>
+
+            <!-- CONTACT & SOCIAL LINKS -->
+            <div>
+                <h4>Contact & Follow Us</h4>
+
+                <div class="footer-links">
+                    <a href="mailto:your-email@example.com">
+                        ✉️ Email Us
+                    </a>
+
+                    <a href="https://www.instagram.com/"
+                       target="_blank" rel="noopener noreferrer">
+                        📸 Instagram
+                    </a>
+
+                    <a href="https://www.facebook.com/"
+                       target="_blank" rel="noopener noreferrer">
+                        📘 Facebook
+                    </a>
+
+                    <a href="https://www.youtube.com/"
+                       target="_blank" rel="noopener noreferrer">
+                        ▶️ YouTube
+                    </a>
+
+                    <a href="https://www.linkedin.com/"
+                       target="_blank" rel="noopener noreferrer">
+                        💼 LinkedIn
+                    </a>
+
+                    <a href="https://t.me/"
+                       target="_blank" rel="noopener noreferrer">
+                        ✈️ Telegram
+                    </a>
+
+                    <a href="https://www.whatsapp.com/"
+                       target="_blank" rel="noopener noreferrer">
+                        💬 WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- OFFICIAL GOVERNMENT LINKS -->
+            <div>
+                <h4>Official Government Links</h4>
+
+                <div class="footer-links">
+                    <a href="https://www.india.gov.in/"
+                       target="_blank" rel="noopener noreferrer">
+                        🇮🇳 National Portal of India
+                    </a>
+
+                    <a href="https://www.mygov.in/"
+                       target="_blank" rel="noopener noreferrer">
+                        🏛️ MyGov India
+                    </a>
+
+                    <a href="https://www.digitalindia.gov.in/"
+                       target="_blank" rel="noopener noreferrer">
+                        💻 Digital India
+                    </a>
+
+                    <a href="https://www.gujaratindia.gov.in/"
+                       target="_blank" rel="noopener noreferrer">
+                        📍 Gujarat Government
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- COPYRIGHT -->
+        <div class="footer-bottom">
+            <p>
+                © <span id="currentYear"></span>
+                GovGuide. All rights reserved.
+            </p>
+
+            <p>Made for easier access to government information.</p>
+        </div>
+    </div>
+</footer>
+  
+  
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Mobile navigation
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", function () {
+            const isOpen = navLinks.classList.toggle("show");
+            menuToggle.setAttribute("aria-expanded", isOpen);
+        });
+
+        // Close mobile menu after selecting a link
+        document.querySelectorAll("#navLinks a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                navLinks.classList.remove("show");
+                menuT<!-- FOOTER -->oggle.setAttribute("aria-expanded", "false");
+            });
+        });
+
+        // Search website sections
+        const searchableSections = [
+            { name: "education", id: "education" },
+            { name: "courses colleges scholarship", id: "education" },
+            { name: "jobs government recruitment", id: "jobs" },
+            { name: "ssc upsc railway banking", id: "jobs" },
+            { name: "exams examination syllabus calendar", id: "exams" },
+            { name: "study material notes papers practice", id: "study" },
+            { name: "schemes scholarship welfare", id: "schemes" },
+            { name: "citizen services certificates portals", id: "services" },
+            { name: "contact question complaint feedback", id: "contact" }
+        ];
+
+        document.getElementById("searchForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const query = document.getElementById("siteSearch").value
+                .trim()
+                .toLowerCase();
+
+            if (!query) {
+                document.getElementById("siteSearch").focus();
+                return;
+            }
+
+            const result = searchableSections.find(function (section) {
+                return section.name.includes(query) ||
+                       query.split(/\s+/).some(function (word) {
+                           return word.length > 2 && section.name.includes(word);
+                       });
+            });
+
+            if (result) {
+                document.getElementById(result.id).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                alert("No matching section found. Try jobs, education, exams, schemes or services.");
+            }
+        });
+
+        // Contact form demo only: no message is sent or saved
+        document.getElementById("contactForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const status = document.getElementById("formStatus");
+            status.style.color = "#174ea6";
+            status.textContent =
+                "Demo only: your form is valid, but no message has been sent or saved. Connect a backend to enable submissions.";
+
+            alert("This is a demo form. Your message has not been sent or saved.");
+        });
+
+        // Current year in footer
+        document.getElementById("currentYear").textContent =
+            new Date().getFullYear();
+    </script>
+
+<!-- LOGIN / SIGN UP SECTION -->
+<section id="loginSection" style="display:none;padding:60px 20px;background:#f5f8ff;">
+  <div style="max-width:430px;margin:auto;padding:30px;background:white;border-radius:18px;box-shadow:0 8px 30px #00000012;">
+    <h2 style="text-align:center;color:#174ea6;">Welcome to GovGuide</h2>
+    <p style="text-align:center;">Login or create your account</p>
+
+    <div style="display:flex;gap:10px;margin:20px 0;">
+      <button type="button" id="govShowLogin" style="flex:1;padding:12px;background:#174ea6;color:white;border:0;border-radius:8px;">Login</button>
+      <button type="button" id="govShowSignup" style="flex:1;padding:12px;background:#e8efff;color:#174ea6;border:0;border-radius:8px;">Sign Up</button>
+    </div>
+
+    <form id="govLoginForm">
+      <div id="govNameBox" style="display:none;">
+        <label for="govName">Full Name</label>
+        <input id="govName" type="text" autocomplete="name" placeholder="Enter your name" style="box-sizing:border-box;width:100%;padding:12px;margin:8px 0 15px;border:1px solid #ddd;border-radius:8px;">
+      </div>
+      <label for="govEmail">Email</label>
+      <input id="govEmail" type="email" required autocomplete="email" placeholder="Enter your email" style="box-sizing:border-box;width:100%;padding:12px;margin:8px 0 15px;border:1px solid #ddd;border-radius:8px;">
+      <label for="govPassword">Password</label>
+      <input id="govPassword" type="password" required minlength="6" autocomplete="current-password" placeholder="At least 6 characters" style="box-sizing:border-box;width:100%;padding:12px;margin:8px 0 18px;border:1px solid #ddd;border-radius:8px;">
+      <button id="govSubmit" type="submit" style="width:100%;padding:13px;background:#174ea6;color:white;border:0;border-radius:8px;cursor:pointer;">Login</button>
+    </form>
+
+    <p id="govLoginMessage" role="status" style="margin-top:15px;text-align:center;overflow-wrap:anywhere;"></p>
+    <p id="govUserInfo" style="text-align:center;overflow-wrap:anywhere;"></p>
+    <button type="button" id="govLogout" style="display:none;width:100%;padding:12px;margin-top:8px;border:0;border-radius:8px;background:#b42318;color:white;">Logout</button>
+    <button type="button" id="govCloseLogin" style="width:100%;padding:12px;margin-top:10px;border:1px solid #ddd;border-radius:8px;background:white;">Back to Home</button>
+  </div>
+</section>
+
+<script type="module">
+import { registerUser, loginUser, logoutUser, watchLoginState }
+  from "./js/firebase-auth.js";
+
+const section = document.getElementById("loginSection");
+const form = document.getElementById("govLoginForm");
+const nameBox = document.getElementById("govNameBox");
+const nameInput = document.getElementById("govName");
+const emailInput = document.getElementById("govEmail");
+const passwordInput = document.getElementById("govPassword");
+const message = document.getElementById("govLoginMessage");
+const userInfo = document.getElementById("govUserInfo");
+const submit = document.getElementById("govSubmit");
+const logout = document.getElementById("govLogout");
+const homeLoginLink = document.getElementById("homeLoginLink");
+const homeLogoutBtn = document.getElementById("homeLogoutBtn");
+let mode = "login";
+
+function showMessage(text, isError = false) {
+  message.textContent = text;
+  message.style.color = isError ? "#b42318" : "#174ea6";
+}
+function setMode(nextMode) {
+  mode = nextMode;
+  const signup = mode === "signup";
+  nameBox.style.display = signup ? "block" : "none";
+  nameInput.required = signup;
+  submit.textContent = signup ? "Create Account" : "Login";
+  passwordInput.autocomplete = signup ? "new-password" : "current-password";
+  showMessage("");
+}
+document.getElementById("govShowLogin").addEventListener("click", () => setMode("login"));
+document.getElementById("govShowSignup").addEventListener("click", () => setMode("signup"));
+
+document.querySelectorAll('a[href="login.html"]').forEach(link => {
+  link.addEventListener("click", event => {
+    event.preventDefault();
+    section.style.display = "block";
+    section.scrollIntoView({ behavior: "smooth" });
+  });
+});
+
+document.getElementById("govCloseLogin").addEventListener("click", () => {
+  section.style.display = "none";
+  showMessage("");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+form.addEventListener("submit", async event => {
+  event.preventDefault();
+  submit.disabled = true;
+  showMessage(mode === "signup" ? "Creating account..." : "Signing in...");
+  try {
+    const email = emailInput.value.trim().toLowerCase();
+    const password = passwordInput.value;
+    if (mode === "signup") {
+      if (!nameInput.value.trim()) throw new Error("Please enter your full name.");
+      const result = await registerUser(email, password);
+      form.reset();
+      setMode("login");
+      showMessage(result + " Check your inbox and spam folder.");
+    } else {
+      const user = await loginUser(email, password);
+      showMessage("Login successful!");
+      userInfo.textContent = "Signed in as " + user.email;
+    }
+  } catch (error) {
+    const messages = {
+      "auth/email-already-in-use": "This email already has an account. Please log in.",
+      "auth/invalid-email": "Please enter a valid email address.",
+      "auth/weak-password": "Use a stronger password with at least 6 characters.",
+      "auth/invalid-credential": "Email or password is incorrect.",
+      "auth/too-many-requests": "Too many attempts. Please try again later.",
+      "auth/network-request-failed": "Network error. Check your internet connection."
+    };
+    showMessage(messages[error.code] || error.message || "Something went wrong.", true);
+  } finally {
+    submit.disabled = false;
+  }
+});
+
+logout.addEventListener("click", async () => {
+  try {
+    await logoutUser();
+    showMessage("You have logged out.");
+    userInfo.textContent = "";
+  } catch (error) {
+    showMessage(error.message, true);
+  }
+});
+
+watchLoginState(user => {
+  const verified = Boolean(user && user.emailVerified);
+  logout.style.display = verified ? "block" : "none";
+  if (homeLoginLink) homeLoginLink.style.display = verified ? "none" : "";
+  if (homeLogoutBtn) homeLogoutBtn.style.display = verified ? "inline-block" : "none";
+  if (verified) userInfo.textContent = "Signed in as " + user.email;
+  else userInfo.textContent = "";
+});
+
+if (homeLogoutBtn) {
+  homeLogoutBtn.addEventListener("click", async () => {
+    try {
+      await logoutUser();
+      window.location.reload();
+    } catch (error) {
+      console.error("Logout failed:", error);
+      alert("Logout failed. Please try again.");
+    }
+  });
+}
+
+setMode("login");
+</script>
+</body>
+</html>
+
+
+
+
