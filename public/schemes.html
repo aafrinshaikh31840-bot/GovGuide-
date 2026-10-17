@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Government Schemes | GovGuide</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f4f7fc;color:#17243b;line-height:1.6}
+header{background:linear-gradient(120deg,#123b78,#1769aa);color:white;padding:28px 7%}
+header h1{font-size:32px}
+header p{margin-top:6px;color:#e6f2ff}
+nav{background:white;padding:15px 7%;display:flex;gap:20px;flex-wrap:wrap;box-shadow:0 3px 12px #0000000c}
+nav a{color:#174c89;text-decoration:none;font-weight:bold}
+nav a:hover{color:#e87524}
+.hero{margin:28px auto;padding:30px;width:86%;border-radius:20px;background:linear-gradient(120deg,#e2efff,#fff3df)}
+.hero h2{font-size:27px;color:#174c89;margin-bottom:8px}
+main{width:86%;margin:25px auto}
+.controls{display:flex;gap:12px;flex-wrap:wrap;margin:22px 0}
+input,select,button{padding:12px;border:1px solid #d6dfec;border-radius:9px;font-size:15px}
+input{flex:1;min-width:200px}
+button{background:#174c89;color:white;border:0;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:20px}
+.card{background:white;border:1px solid #e4eaf3;border-radius:16px;padding:22px;box-shadow:0 5px 18px #15345d0b}
+.icon{width:54px;height:54px;border-radius:14px;background:#e7f1ff;display:grid;place-items:center;font-size:27px;margin-bottom:14px}
+.card h3{color:#174c89;margin-bottom:8px}
+.tag{display:inline-block;background:#eaf5ed;color:#247642;padding:4px 9px;border-radius:20px;font-size:12px;margin:8px 0}
+.card p{font-size:14px;color:#536176;margin:7px 0}
+.card a{display:inline-block;margin-top:12px;color:#1769aa;font-weight:bold;text-decoration:none}
+.card a:hover{text-decoration:underline}
+.note{background:#fff8e8;border-left:4px solid #e8a43b;padding:15px;margin:24px 0;border-radius:8px;font-size:14px}
+footer{text-align:center;background:#102e58;color:white;padding:22px;margin-top:40px}
+@media(max-width:600px){header h1{font-size:26px}.hero,main{width:92%}nav{gap:12px}}
+</style>
+</head>
+<body>
+<header>
+<h1>🏛️ GovGuide</h1>
+<p>Your guide to government schemes and public benefits</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="education.html">Education</a>
+<a href="jobs.html">Government Jobs</a>
+<a href="exams.html">Exams</a>
+<a href="study.html">Study Material</a>
+<a href="schemes.html">Schemes</a>
+<a href="services.html">Citizen Services</a>
+</nav>
+
+<section class="hero">
+<h2>Explore Government Schemes 🇮🇳</h2>
+<p>Discover schemes related to students, farmers, women, employment and financial support. Check eligibility and always verify details on the official government website.</p>
+</section>
+
+<main>
+<h2>Find a Scheme</h2>
+<div class="controls">
+<input id="search" type="search" placeholder="Search schemes...">
+<select id="category">
+<option value="all">All Categories</option>
+<option value="education">Education</option>
+<option value="farmer">Farmers</option>
+<option value="women">Women</option>
+<option value="employment">Employment</option>
+<option value="health">Health</option>
+<option value="housing">Housing</option>
+</select>
+<button onclick="resetFilters()">Reset</button>
+</div>
+
+<div class="grid" id="schemeList">
+<article class="card" data-category="education">
+<div class="icon">🎓</div><h3>National Scholarship Portal</h3>
+<span class="tag">Education</span>
+<p><b>Purpose:</b> Provides access to various scholarship schemes for eligible students.</p>
+<p><b>Eligibility:</b> Depends on the individual scholarship and its rules.</p>
+<a href="https://scholarships.gov.in/" target="_blank" rel="noopener">Official Portal ↗</a>
+</article>
+
+<article class="card" data-category="farmer">
+<div class="icon">🌾</div><h3>PM-KISAN</h3>
+<span class="tag">Farmers</span>
+<p><b>Purpose:</b> Income support scheme for eligible farmer families.</p>
+<p><b>Eligibility:</b> Subject to scheme rules and exclusions.</p>
+<a href="https://pmkisan.gov.in/" target="_blank" rel="noopener">Official Portal ↗</a>
+</article>
+
+<article class="card" data-category="health">
+<div class="icon">🏥</div><h3>Ayushman Bharat PM-JAY</h3>
+<span class="tag">Healthcare</span>
+<p><b>Purpose:</b> Health coverage for eligible beneficiaries under the scheme.</p>
+<p><b>Eligibility:</b> Check beneficiary criteria through official channels.</p>
+<a href="https://pmjay.gov.in/" target="_blank" rel="noopener">Official Portal ↗</a>
+</article>
+
+<article class="card" data-category="housing">
+<div class="icon">🏠</div><h3>Pradhan Mantri Awas Yojana</h3>
+<span class="tag">Housing</span>
+<p><b>Purpose:</b> Supports eligible households under applicable housing programmes.</p>
+<p><b>Eligibility:</b> Depends on the programme, location and current rules.</p>
+<a href="https://pmay-urban.gov.in/" target="_blank" rel="noopener">Urban Official Portal ↗</a>
+</article>
+
+<article class="card" data-category="women">
+<div class="icon">👩</div><h3>Beti Bachao Beti Padhao</h3>
+<span class="tag">Women & Girls</span>
+<p><b>Purpose:</b> Promotes the protection, education and empowerment of girls.</p>
+<p><b>Details:</b> Check official information for current programmes and services.</p>
+<a href="https://wcd.gov.in/" target="_blank" rel="noopener">Women & Child Development ↗</a>
+</article>
+
+<article class="card" data-category="employment">
+<div class="icon">💼</div><h3>National Career Service</h3>
+<span class="tag">Employment</span>
+<p><b>Purpose:</b> Career guidance, job search and employment-related services.</p>
+<p><b>For:</b> Job seekers and employers using the portal.</p>
+<a href="https://www.ncs.gov.in/" target="_blank" rel="noopener">Official Portal ↗</a>
+</article>
+
+<article class="card" data-category="education">
+<div class="icon">📚</div><h3>PM-USP Scholarship Scheme</h3>
+<span class="tag">Education</span>
+<p><b>Purpose:</b> Scholarship support for eligible students under applicable components.</p>
+<p><b>Eligibility:</b> Academic, income and other criteria may apply.</p>
+<a href="https://www.education.gov.in/" target="_blank" rel="noopener">Education Ministry ↗</a>
+</article>
+
+<article class="card" data-category="women">
+<div class="icon">🌸</div><h3>Women Empowerment Programmes</h3>
+<span class="tag">Women</span>
+<p><b>Purpose:</b> Government initiatives supporting women's safety and empowerment.</p>
+<p><b>Details:</b> Available benefits differ by programme and state.</p>
+<a href="https://wcd.gov.in/" target="_blank" rel="noopener">Official Portal ↗</a>
+</article>
+</div>
+
+<div class="note"><b>Important:</b> GovGuide is an informational student project, not a government website. Scheme availability, eligibility, documents and deadlines can change. Verify all details on the official portal before applying. Never pay an unofficial agent or share OTPs.</div>
+</main>
+
+<footer>
+<p>© 2026 GovGuide | Government Information Hub</p>
+<p>Information for educational purposes. Verify details with official sources.</p>
+</footer>
+
+<script>
+const search = document.getElementById("search");
+const category = document.getElementById("category");
+const cards = document.querySelectorAll(".card");
+
+function filterSchemes(){
+  const term = search.value.toLowerCase().trim();
+  const selected = category.value;
+  cards.forEach(card => {
+    const matchesText = card.innerText.toLowerCase().includes(term);
+    const matchesCategory = selected === "all" || card.dataset.category === selected;
+    card.style.display = matchesText && matchesCategory ? "" : "none";
+  });
+}
+search.addEventListener("input", filterSchemes);
+category.addEventListener("change", filterSchemes);
+
+function resetFilters(){
+  search.value = "";
+  category.value = "all";
+  filterSchemes();
+}
+</script>
+</body>
+</html>
+

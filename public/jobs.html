@@ -1,0 +1,250 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Government Jobs | GovGuide</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f4f7ff;color:#24334d;line-height:1.6}
+header{background:white;box-shadow:0 3px 15px #14213d12;position:sticky;top:0;z-index:10}
+.nav{max-width:1150px;margin:auto;padding:16px 22px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.logo{font-size:28px;font-weight:800;color:#2457d6;text-decoration:none}
+nav{display:flex;gap:16px;flex-wrap:wrap}
+nav a{font-size:14px;font-weight:bold;color:#334155;text-decoration:none}
+nav a:hover{color:#2457d6}
+.hero{background:linear-gradient(120deg,#14213d,#2457d6);color:white;padding:48px 22px}
+.hero-inner{max-width:1100px;margin:auto}
+.eyebrow{font-size:13px;letter-spacing:2px;color:#cfe0ff;font-weight:bold}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.2;margin:12px 0}
+.hero p{max-width:720px;color:#e5edff}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.pill{background:#ffffff18;border:1px solid #ffffff50;padding:7px 13px;border-radius:30px;font-size:13px}
+main{max-width:1100px;margin:35px auto;padding:0 22px}
+h2{font-size:28px;color:#14213d}
+.subtitle{color:#64748b;margin:5px 0 22px}
+.filters{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:12px;background:white;border:1px solid #e1e8f5;border-radius:16px;padding:20px;margin-bottom:25px}
+input,select,button{min-width:0;width:100%;padding:12px;border-radius:9px;border:1px solid #cbd5e1;font:inherit;background:white}
+button{background:#2457d6;color:white;border:0;font-weight:bold;cursor:pointer}
+button:hover{background:#1744b5}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.job{background:white;border:1px solid #e0e7f3;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px;box-shadow:0 5px 20px #1725540a;transition:.2s}
+.job:hover{transform:translateY(-3px);box-shadow:0 10px 25px #17255416}
+.job-head{display:flex;align-items:center;gap:14px}
+.job-icon{width:58px;height:58px;min-width:58px;border-radius:17px;display:flex;align-items:center;justify-content:center;font-size:28px;color:white;box-shadow:0 5px 13px #14213d20}
+.blue{background:linear-gradient(135deg,#60a5fa,#2563eb)}
+.purple{background:linear-gradient(135deg,#c084fc,#7c3aed)}
+.green{background:linear-gradient(135deg,#34d399,#059669)}
+.orange{background:linear-gradient(135deg,#fbbf24,#ea580c)}
+.red{background:linear-gradient(135deg,#fb7185,#e11d48)}
+.teal{background:linear-gradient(135deg,#2dd4bf,#0f766e)}
+.tag{display:inline-block;width:fit-content;padding:4px 10px;background:#e8efff;color:#2049ad;border-radius:30px;font-size:12px;font-weight:bold}
+.job h3{font-size:18px;color:#14213d;line-height:1.35}
+.job p{font-size:14px;color:#58677e}
+.job .qualification{font-weight:bold;color:#334155}
+.job a{display:block;margin-top:auto;text-align:center;text-decoration:none;background:#edf3ff;color:#204bc0;border-radius:9px;padding:11px;font-weight:bold}
+.job a:hover{background:#dbe7ff}
+.notice{margin:26px 0;padding:18px;background:#fff8e6;border:1px solid #f4d78c;color:#754d00;border-radius:12px;font-size:14px}
+.empty{display:none;background:white;padding:25px;border-radius:12px;text-align:center;grid-column:1/-1}
+.quick{padding:25px;background:#eaf1ff;border-radius:15px;margin-top:25px}
+.quick h2{font-size:23px}
+.quick-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+.quick-links a{padding:10px 14px;border-radius:9px;background:white;color:#204bc0;text-decoration:none;font-weight:bold;font-size:14px}
+footer{margin-top:40px;background:#122344;color:#e5edff;padding:30px 22px}
+.footer-inner{max-width:1100px;margin:auto;display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}
+footer h3{color:white;margin-bottom:8px}
+footer a{color:white;text-decoration:none;font-size:13px;margin-right:12px}
+footer p{font-size:13px}
+@media(max-width:850px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.filters{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.cards,.filters{grid-template-columns:1fr}.nav{align-items:flex-start}.hero{padding:38px 22px}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="nav">
+<a class="logo" href="index.html">GovGuide</a>
+<nav>
+<a href="index.html">Home</a>
+<a href="education.html">Education</a>
+<a href="jobs.html">Government Jobs</a>
+<a href="exams.html">Exams</a>
+<a href="study.html">Study Material</a>
+<a href="schemes.html">Schemes</a>
+<a href="services.html">Services</a>
+<a href="login.html">Login</a>
+</nav>
+</div>
+</header>
+
+<section class="hero">
+<div class="hero-inner">
+<div class="eyebrow">YOUR CAREER INFORMATION HUB</div>
+<h1>Find Government Jobs<br>That Match Your Qualification</h1>
+<p>Explore government job categories after Class 10, Class 12, graduation and post-graduation. Verify eligibility through official recruitment notifications.</p>
+<div class="pills">
+<span class="pill">10th Pass</span><span class="pill">12th Pass</span>
+<span class="pill">Graduation</span><span class="pill">Post-Graduation</span>
+</div>
+</div>
+</section>
+
+<main>
+<h2>Explore Government Job Opportunities</h2>
+<p class="subtitle">Search by job name, qualification or department.</p>
+
+<div class="filters">
+<input id="jobSearch" type="search" placeholder="Search jobs or departments...">
+<select id="qualificationFilter">
+<option value="all">All Qualifications</option>
+<option value="10th">10th Pass</option>
+<option value="12th">12th Pass</option>
+<option value="graduation">Graduation</option>
+<option value="postgraduation">Post-Graduation</option>
+</select>
+<select id="categoryFilter">
+<option value="all">All Departments</option>
+<option value="ssc">SSC</option><option value="upsc">UPSC</option>
+<option value="railway">Railway</option><option value="banking">Banking</option>
+<option value="gujarat">Gujarat State</option><option value="other">Other</option>
+</select>
+<button id="resetBtn" type="button">↻ Reset Filters</button>
+</div>
+
+<div class="cards" id="jobCards">
+
+<article class="job" data-qualification="10th" data-category="ssc">
+<div class="job-head"><div class="job-icon blue">▤</div><div><span class="tag">SSC</span><h3>Multi-Tasking Staff (MTS)</h3></div></div>
+<p class="qualification">Typical entry qualification: Class 10</p>
+<p>Explore non-technical support roles advertised through SSC. Age limits and other conditions apply.</p>
+<a href="https://ssc.gov.in/" target="_blank" rel="noopener">Official SSC Website ↗</a>
+</article>
+
+<article class="job" data-qualification="10th" data-category="railway">
+<div class="job-head"><div class="job-icon purple">🚆</div><div><span class="tag">Railway</span><h3>Railway Entry-Level Posts</h3></div></div>
+<p class="qualification">Qualification: Depends on the post</p>
+<p>Some notifications may accept Class 10; other roles can require ITI or additional qualifications.</p>
+<a href="https://www.rrbcdg.gov.in/" target="_blank" rel="noopener">Railway Recruitment Board ↗</a>
+</article>
+
+<article class="job" data-qualification="12th" data-category="ssc">
+<div class="job-head"><div class="job-icon green">▣</div><div><span class="tag">SSC</span><h3>SSC CHSL</h3></div></div>
+<p class="qualification">Typical entry qualification: Class 12</p>
+<p>Explore eligible clerical and data-entry posts under the Combined Higher Secondary Level examination.</p>
+<a href="https://ssc.gov.in/" target="_blank" rel="noopener">Official SSC Website ↗</a>
+</article>
+
+<article class="job" data-qualification="12th" data-category="other">
+<div class="job-head"><div class="job-icon red">⬟</div><div><span class="tag">Defence</span><h3>Defence Recruitment</h3></div></div>
+<p class="qualification">Qualification: Varies by entry</p>
+<p>Some entries accept Class 12, while others have subject, physical or additional eligibility requirements.</p>
+<a href="https://joinindianarmy.nic.in/" target="_blank" rel="noopener">Indian Army Recruitment ↗</a>
+</article>
+
+<article class="job" data-qualification="graduation" data-category="ssc">
+<div class="job-head"><div class="job-icon purple">🎓</div><div><span class="tag">SSC</span><h3>SSC CGL</h3></div></div>
+<p class="qualification">Typical entry qualification: Graduation</p>
+<p>Explore graduate-level central government posts. Some roles may have additional subject requirements.</p>
+<a href="https://ssc.gov.in/" target="_blank" rel="noopener">Official SSC Website ↗</a>
+</article>
+
+<article class="job" data-qualification="graduation" data-category="upsc">
+<div class="job-head"><div class="job-icon orange">♜</div><div><span class="tag">UPSC</span><h3>Civil Services Examination</h3></div></div>
+<p class="qualification">Typical entry qualification: Graduation</p>
+<p>Learn about Civil Services recruitment, examination stages and official eligibility conditions.</p>
+<a href="https://upsc.gov.in/" target="_blank" rel="noopener">Official UPSC Website ↗</a>
+</article>
+
+<article class="job" data-qualification="graduation" data-category="banking">
+<div class="job-head"><div class="job-icon teal">▥</div><div><span class="tag">Banking</span><h3>Bank PO and Clerk Recruitment</h3></div></div>
+<p class="qualification">Commonly requires Graduation</p>
+<p>Check public-sector bank notices for the exact degree, age and other eligibility conditions.</p>
+<a href="https://www.ibps.in/" target="_blank" rel="noopener">Official IBPS Website ↗</a>
+</article>
+
+<article class="job" data-qualification="graduation" data-category="gujarat">
+<div class="job-head"><div class="job-icon blue">⌂</div><div><span class="tag">Gujarat State</span><h3>Gujarat State Government Posts</h3></div></div>
+<p class="qualification">Qualification: Depends on the post</p>
+<p>Explore state recruitment notices. Posts may require graduation, specific subjects or other conditions.</p>
+<a href="https://gpsc.gujarat.gov.in/" target="_blank" rel="noopener">Official GPSC Website ↗</a>
+</article>
+
+<article class="job" data-qualification="postgraduation" data-category="other">
+<div class="job-head"><div class="job-icon purple">♟</div><div><span class="tag">Specialist Posts</span><h3>Post-Graduate Level Vacancies</h3></div></div>
+<p class="qualification">Master's degree or specified qualification</p>
+<p>Examples may include research, teaching, specialist and technical roles when advertised.</p>
+<a href="https://www.ncs.gov.in/" target="_blank" rel="noopener">National Career Service ↗</a>
+</article>
+
+<article class="job" data-qualification="postgraduation" data-category="gujarat">
+<div class="job-head"><div class="job-icon red">▤</div><div><span class="tag">Gujarat State</span><h3>Subject-Specific Government Posts</h3></div></div>
+<p class="qualification">Qualification: As specified in each notice</p>
+<p>Some state-level teaching, specialist or technical vacancies may require postgraduate education and other credentials.</p>
+<a href="https://ojas.gujarat.gov.in/" target="_blank" rel="noopener">Gujarat OJAS Portal ↗</a>
+</article>
+
+<div class="empty" id="emptyMessage">No matching jobs found. Try another search or filter.</div>
+</div>
+
+<div class="notice"><strong>Important Notice:</strong> These are examples of job categories, not confirmed current vacancies. Eligibility, age limits, qualifications and dates depend on the official notification. GovGuide is a student information project, not an official government website.</div>
+
+<section class="quick">
+<h2>Quick Access to Official Portals</h2>
+<p class="subtitle">Verify recruitment details directly with the official source.</p>
+<div class="quick-links">
+<a href="https://ssc.gov.in/" target="_blank" rel="noopener">SSC ↗</a>
+<a href="https://upsc.gov.in/" target="_blank" rel="noopener">UPSC ↗</a>
+<a href="https://www.ibps.in/" target="_blank" rel="noopener">IBPS ↗</a>
+<a href="https://gpsc.gujarat.gov.in/" target="_blank" rel="noopener">GPSC ↗</a>
+<a href="https://ojas.gujarat.gov.in/" target="_blank" rel="noopener">OJAS ↗</a>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="footer-inner">
+<div><h3>GovGuide</h3><p>Your guide to government information, education, jobs,<br>exams and useful citizen services.</p></div>
+<div><h3>Quick Links</h3>
+<a href="index.html">Home</a><a href="education.html">Education</a><a href="jobs.html">Jobs</a><a href="exams.html">Exams</a><a href="study.html">Study Material</a><a href="schemes.html">Schemes</a><a href="services.html">Services</a>
+</div>
+<p>© 2026 GovGuide. Student Web Development Project.</p>
+</div>
+</footer>
+
+<script>
+const searchInput = document.getElementById('jobSearch');
+const qualificationFilter = document.getElementById('qualificationFilter');
+const categoryFilter = document.getElementById('categoryFilter');
+const cards = Array.from(document.querySelectorAll('.job'));
+const emptyMessage = document.getElementById('emptyMessage');
+
+function filterJobs(){
+  const query = searchInput.value.trim().toLowerCase();
+  const qualification = qualificationFilter.value;
+  const category = categoryFilter.value;
+  let visible = 0;
+
+  cards.forEach(card => {
+    const matchesText = card.innerText.toLowerCase().includes(query);
+    const matchesQualification = qualification === 'all' || card.dataset.qualification === qualification;
+    const matchesCategory = category === 'all' || card.dataset.category === category;
+    const show = matchesText && matchesQualification && matchesCategory;
+    card.style.display = show ? 'flex' : 'none';
+    if(show) visible++;
+  });
+  emptyMessage.style.display = visible ? 'none' : 'block';
+}
+
+searchInput.addEventListener('input',filterJobs);
+qualificationFilter.addEventListener('change',filterJobs);
+categoryFilter.addEventListener('change',filterJobs);
+document.getElementById('resetBtn').addEventListener('click',()=>{
+  searchInput.value='';
+  qualificationFilter.value='all';
+  categoryFilter.value='all';
+  filterJobs();
+});
+</script>
+</body>
+</html>

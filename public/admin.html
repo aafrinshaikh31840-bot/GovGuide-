@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GovGuide | Admin Dashboard</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f3f6fc; color: #18233b; }
+    header { background: #172554; color: white; padding: 22px 7%; display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap; }
+    header h1 { font-size: 25px; }
+    header p { margin-top: 6px; color: #dbeafe; }
+    main { max-width: 1100px; margin: 35px auto; padding: 0 20px; }
+    .notice, .card, .section { background: white; border-radius: 14px; padding: 22px; margin-bottom: 20px; }
+    .notice { background: #eff6ff; line-height: 1.6; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+    .card h3 { color: #64748b; font-size: 15px; }
+    .number { font-size: 32px; font-weight: bold; margin-top: 16px; }
+    .section { margin-top: 24px; overflow-x: auto; }
+    .section h2 { margin-bottom: 16px; }
+    table { width: 100%; border-collapse: collapse; min-width: 550px; }
+    th, td { padding: 13px; border-bottom: 1px solid #e2e8f0; text-align: left; }
+    th { background: #f8fafc; }
+    button { background: white; color: #172554; border: 0; border-radius: 8px; padding: 11px 16px; font-weight: bold; cursor: pointer; }
+    #status { margin: 15px 0; line-height: 1.6; }
+    footer { text-align: center; color: #64748b; padding: 25px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>GovGuide Admin</h1>
+      <p>Administration dashboard</p>
+    </div>
+    <button id="logoutBtn">Sign out</button>
+  </header>
+
+  <main>
+    <div class="notice">
+      <strong>Admin dashboard</strong>
+      <p>Login statistics and recent login events from Firestore.</p>
+      <p id="adminEmail">Checking admin access...</p>
+      <p id="status" role="status">Loading dashboard...</p>
+    </div>
+
+<div class="cards">
+  <div class="card">
+    <h3>Registered Accounts</h3>
+    <div class="number">5</div>
+    <p>Manually verified Firebase Authentication account total.</p>
+  </div>
+
+  <div class="card">
+    <h3>Successful Login Events</h3>
+    <div class="number" id="loginCount">—</div>
+  </div>
+</div>
+
+    <section class="section">
+      <h2>Recent Login Activity</h2>
+      <table>
+        <thead>
+          <tr><th>Email</th><th>Method</th><th>Date &amp; Time</th></tr>
+        </thead>
+        <tbody id="loginRows">
+          <tr><td colspan="3">Loading login records...</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>© 2026 GovGuide · Admin area</footer>
+
+  <script type="module">
+    import { initializeApp } from
+      "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+    import {
+      getAuth, onAuthStateChanged, signOut
+    } from
+      "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+    import {
+      getFirestore, collection, getDocs, getCountFromServer,
+      query, orderBy, limit
+    } from
+      "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCTzZxQ4F3aid5MhBH17a8_BZm3I0ZjOic",
+      authDomain: "govguide-ca4e7.firebaseapp.com",
+      projectId: "govguide-ca4e7",
+      storageBucket: "govguide-ca4e7.firebasestorage.app",
+      messagingSenderId: "493258840997",
+      appId: "1:493258840997:web:4502a4e36933c6a5f4664c",
+      measurementId: "G-CCWY9757MY"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const admins = [
+      "aafrinshaikh31840@gmail.com",
+      "shahezadishaikh98@gmail.com"
+    ];
+
+    const status = document.getElementById("status");
+    const adminEmail = document.getElementById("adminEmail");
+    const loginCount = document.getElementById("loginCount");
+    const loginRows = document.getElementById("loginRows");
+    let loading = false;
+
+    async function loadLoginHistory() {
+      status.textContent = "Loading login history...";
+      loginRows.replaceChildren();
+
+      try {
+        const eventsRef = collection(db, "loginEvents");
+        const countSnapshot = await getCountFromServer(eventsRef);
+        loginCount.textContent = countSnapshot.data().count;
+
+        const recentQuery = query(
+          eventsRef, orderBy("loginTime", "desc"), limit(20)
+        );
+        const snapshot = await getDocs(recentQuery);
+
+        if (snapshot.empty) {
+          loginRows.innerHTML =
+            '<tr><td colspan="3">No login events recorded yet.</td></tr>';
+        } else {
+          snapshot.forEach((item) => {
+            const data = item.data();
+            const row = document.createElement("tr");
+            const emailCell = document.createElement("td");
+            const methodCell = document.createElement("td");
+            const timeCell = document.createElement("td");
+
+            emailCell.textContent = data.email || "Unknown";
+            methodCell.textContent = data.method || "Unknown";
+            timeCell.textContent = data.loginTime?.toDate
+              ? data.loginTime.toDate().toLocaleString()
+              : "Time unavailable";
+
+            row.append(emailCell, methodCell, timeCell);
+            loginRows.appendChild(row);
+          });
+        }
+
+        status.textContent = "Login history loaded successfully.";
+      } catch (error) {
+        console.error("Admin dashboard data load failed:", error);
+        status.textContent =
+          "Could not load data. Check Firestore Rules and browser Console.";
+        loginCount.textContent = "—";
+        loginRows.innerHTML =
+          '<tr><td colspan="3">Unable to load login records.</td></tr>';
+      }
+    }
+
+    onAuthStateChanged(auth, async (user) => {
+      if (loading) return;
+
+      if (!user) {
+        adminEmail.textContent = "Please sign in with an approved admin account.";
+        status.textContent = "Not signed in.";
+        loginRows.innerHTML =
+          '<tr><td colspan="3">Sign in to view login history.</td></tr>';
+        loginCount.textContent = "—";
+        return;
+      }
+
+      if (!admins.includes((user.email || "").toLowerCase())) {
+        adminEmail.textContent = "Access denied.";
+        status.textContent = "This account is not an approved admin.";
+        loginCount.textContent = "—";
+        loginRows.innerHTML =
+          '<tr><td colspan="3">Access denied.</td></tr>';
+        await signOut(auth);
+        return;
+      }
+
+      loading = true;
+      adminEmail.textContent = "Admin signed in: " + user.email;
+      try {
+        await loadLoginHistory();
+      } finally {
+        loading = false;
+      }
+    });
+
+    document.getElementById("logoutBtn").addEventListener("click", async () => {
+      await signOut(auth);
+      location.href = "login.html";
+    });
+  </script>
+</body>
+</html>

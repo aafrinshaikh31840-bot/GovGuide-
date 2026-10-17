@@ -81,6 +81,7 @@
       </div>
       <button class="submit" id="submitBtn" type="submit">Login</button>
     </form>
+    <button type="button" id="googleLoginBtn" class="submit" style="margin-top:12px;background:#fff;color:#222;border:1px solid #ddd;">Continue with Google</button>
 
     <p id="message" role="status" aria-live="polite"></p>
     <button id="logoutBtn" class="submit hidden" type="button">Logout</button>
@@ -93,7 +94,8 @@ import {
   loginUser,
   logoutUser,
   watchLoginState,
-  resetUserPassword
+  resetUserPassword,
+  loginWithGoogle
 } from "./js/firebase-auth.js";
     
     import { sendAdminLoginAlert } from "./js/email-notification.js";
@@ -114,6 +116,7 @@ import {
       const signup = mode === "signup";
       document.getElementById("nameBox").classList.toggle("hidden", !signup);
       document.getElementById("confirmBox").classList.toggle("hidden", !signup);
+      document.getElementById("googleLoginBtn").classList.toggle("hidden", signup);
       document.getElementById("name").required = signup;
       document.getElementById("confirm").required = signup;
       document.getElementById("password").autocomplete =
@@ -153,6 +156,29 @@ import {
         message.textContent = "Could not request password reset. Check your email and try again.";
       } finally {
         forgotBtn.disabled = false;
+      }
+    });
+    const googleLoginBtn = document.getElementById("googleLoginBtn");
+    googleLoginBtn.addEventListener("click", async () => {
+      if (busy) return;
+      busy = true;
+      googleLoginBtn.disabled = true;
+      message.textContent = "Opening Google sign-in...";
+      try {
+        const user = await loginWithGoogle();
+        message.textContent = "Google login successful.";
+        try {
+          await sendAdminLoginAlert(user.email);
+        } catch (notificationError) {
+          console.error("Admin email notification failed:", notificationError);
+        }
+        window.location.href = "index.html";
+      } catch (error) {
+        console.error("Google login failed:", error);
+        message.textContent = error.message || "Google login failed. Please try again.";
+      } finally {
+        busy = false;
+        googleLoginBtn.disabled = false;
       }
     });
     loginTab.addEventListener("click", () => setMode("login"));
@@ -221,6 +247,7 @@ import {
   </script>
 </body>
 </html>
+
 
 
 

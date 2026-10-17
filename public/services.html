@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Citizen Services | GovGuide</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f4f7fc;color:#192943;line-height:1.6}
+header{padding:28px 7%;background:linear-gradient(120deg,#123b78,#1676b8);color:white}
+header h1{font-size:32px}
+header p{color:#e5f2ff;margin-top:5px}
+nav{display:flex;flex-wrap:wrap;gap:18px;padding:15px 7%;background:white;box-shadow:0 3px 12px #0000000c}
+nav a{color:#174c89;text-decoration:none;font-weight:bold}
+nav a:hover{color:#e87524}
+.hero{width:86%;margin:28px auto;padding:32px;border-radius:20px;background:linear-gradient(120deg,#e1efff,#fff2df)}
+.hero h2{font-size:28px;color:#174c89;margin-bottom:8px}
+main{width:86%;margin:25px auto}
+.controls{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}
+input,select,button{padding:12px;border:1px solid #d6dfec;border-radius:9px;font-size:15px}
+input{flex:1;min-width:200px}
+button{background:#174c89;color:white;border:0;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{background:white;border:1px solid #e3eaf4;border-radius:16px;padding:22px;box-shadow:0 5px 18px #15345d0b}
+.icon{width:55px;height:55px;border-radius:15px;background:#e7f1ff;display:grid;place-items:center;font-size:27px;margin-bottom:13px}
+.card h3{color:#174c89;margin-bottom:8px}
+.card p{font-size:14px;color:#536176;margin:7px 0}
+.tag{display:inline-block;background:#eaf5ed;color:#247642;padding:4px 9px;border-radius:20px;font-size:12px;margin:5px 0}
+.card a{display:inline-block;margin-top:12px;color:#1769aa;font-weight:bold;text-decoration:none}
+.card a:hover{text-decoration:underline}
+.notice{margin:25px 0;padding:16px;background:#fff8e8;border-left:4px solid #e8a43b;border-radius:8px;font-size:14px}
+footer{text-align:center;padding:22px;background:#102e58;color:white;margin-top:40px}
+@media(max-width:600px){header h1{font-size:26px}.hero,main{width:92%}nav{gap:12px}}
+</style>
+</head>
+<body>
+<header>
+<h1>🏛️ GovGuide</h1>
+<p>Your simple guide to government citizen services</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="education.html">Education</a>
+<a href="jobs.html">Government Jobs</a>
+<a href="exams.html">Exams</a>
+<a href="study.html">Study Material</a>
+<a href="schemes.html">Schemes</a>
+<a href="services.html">Citizen Services</a>
+</nav>
+
+<section class="hero">
+<h2>Citizen Services 🇮🇳</h2>
+<p>Find official portals for common public services, identity documents, digital services and Gujarat state services—all in one place.</p>
+</section>
+
+<main>
+<h2>Explore Public Services</h2>
+<p>Choose a service to visit its official portal.</p>
+
+<div class="controls">
+<input id="search" type="search" placeholder="Search services...">
+<select id="category">
+<option value="all">All Categories</option>
+<option value="identity">Identity Documents</option>
+<option value="digital">Digital Services</option>
+<option value="gujarat">Gujarat Services</option>
+<option value="transport">Transport</option>
+<option value="finance">Finance & Documents</option>
+</select>
+<button onclick="resetFilters()">Reset</button>
+</div>
+
+<div class="grid" id="serviceList">
+<article class="card" data-category="identity">
+<div class="icon">🪪</div>
+<h3>Aadhaar Services</h3>
+<span class="tag">Identity Documents</span>
+<p>Find official Aadhaar-related information and available online services.</p>
+<a href="https://uidai.gov.in/" target="_blank" rel="noopener">Visit UIDAI ↗</a>
+</article>
+
+<article class="card" data-category="finance">
+<div class="icon">🧾</div>
+<h3>PAN Card Services</h3>
+<span class="tag">Finance & Documents</span>
+<p>Access official Income Tax information and PAN-related services.</p>
+<a href="https://www.incometax.gov.in/" target="_blank" rel="noopener">Income Tax Portal ↗</a>
+</article>
+
+<article class="card" data-category="digital">
+<div class="icon">💻</div>
+<h3>DigiLocker</h3>
+<span class="tag">Digital Services</span>
+<p>Access eligible digital documents and certificates through DigiLocker.</p>
+<a href="https://www.digilocker.gov.in/" target="_blank" rel="noopener">Visit DigiLocker ↗</a>
+</article>
+
+<article class="card" data-category="transport">
+<div class="icon">🚗</div>
+<h3>Parivahan Services</h3>
+<span class="tag">Transport</span>
+<p>Find driving licence, vehicle registration and related transport services.</p>
+<a href="https://parivahan.gov.in/" target="_blank" rel="noopener">Visit Parivahan ↗</a>
+</article>
+
+<article class="card" data-category="gujarat">
+<div class="icon">🏛️</div>
+<h3>Digital Gujarat</h3>
+<span class="tag">Gujarat Services</span>
+<p>Explore state online services and eligible application facilities.</p>
+<a href="https://www.digitalgujarat.gov.in/" target="_blank" rel="noopener">Visit Digital Gujarat ↗</a>
+</article>
+
+<article class="card" data-category="gujarat">
+<div class="icon">📄</div>
+<h3>Gujarat Government</h3>
+<span class="tag">Gujarat Services</span>
+<p>Find official state government departments, announcements and information.</p>
+<a href="https://gujaratindia.gov.in/" target="_blank" rel="noopener">Visit Gujarat Portal ↗</a>
+</article>
+
+<article class="card" data-category="digital">
+<div class="icon">🌐</div>
+<h3>National Portal of India</h3>
+<span class="tag">Digital Services</span>
+<p>Explore government information, departments and public service links.</p>
+<a href="https://www.india.gov.in/" target="_blank" rel="noopener">Visit India Portal ↗</a>
+</article>
+
+<article class="card" data-category="finance">
+<div class="icon">🏦</div>
+<h3>EPFO Services</h3>
+<span class="tag">Finance & Documents</span>
+<p>Find employee provident fund information and member services.</p>
+<a href="https://www.epfindia.gov.in/" target="_blank" rel="noopener">Visit EPFO ↗</a>
+</article>
+
+<article class="card" data-category="identity">
+<div class="icon">🗳️</div>
+<h3>Voter Services</h3>
+<span class="tag">Identity Documents</span>
+<p>Find voter registration, electoral roll and election-related information.</p>
+<a href="https://voters.eci.gov.in/" target="_blank" rel="noopener">Voters' Service Portal ↗</a>
+</article>
+
+<article class="card" data-category="finance">
+<div class="icon">📜</div>
+<h3>Passport Services</h3>
+<span class="tag">Finance & Documents</span>
+<p>Access passport application information, appointments and related services.</p>
+<a href="https://www.passportindia.gov.in/" target="_blank" rel="noopener">Visit Passport Seva ↗</a>
+</article>
+
+<article class="card" data-category="digital">
+<div class="icon">📢</div>
+<h3>CPGRAMS Grievances</h3>
+<span class="tag">Digital Services</span>
+<p>Find the central government's public grievance registration and tracking portal.</p>
+<a href="https://pgportal.gov.in/" target="_blank" rel="noopener">Visit CPGRAMS ↗</a>
+</article>
+
+<article class="card" data-category="gujarat">
+<div class="icon">📍</div>
+<h3>Gujarat Districts</h3>
+<span class="tag">Gujarat Services</span>
+<p>Find district-level government websites and local administration information.</p>
+<a href="https://gujaratindia.gov.in/" target="_blank" rel="noopener">Official Gujarat Portal ↗</a>
+</article>
+</div>
+
+<div class="notice">
+<b>Safety note:</b> GovGuide is a student information project, not a government website. Always check the website address before entering personal information. Never share your password or OTP with anyone. Some services may require fees or an in-person visit.
+</div>
+</main>
+
+<footer>
+<p>© 2026 GovGuide | Government Information Hub</p>
+<p>For educational purposes. Use official portals for applications and updates.</p>
+</footer>
+
+<script>
+const searchBox = document.getElementById("search");
+const categoryBox = document.getElementById("category");
+const cards = document.querySelectorAll(".card");
+
+function filterServices(){
+  const query = searchBox.value.toLowerCase().trim();
+  const category = categoryBox.value;
+
+  cards.forEach(card => {
+    const matchesText = card.innerText.toLowerCase().includes(query);
+    const matchesCategory = category === "all" || card.dataset.category === category;
+    card.style.display = matchesText && matchesCategory ? "" : "none";
+  });
+}
+
+searchBox.addEventListener("input", filterServices);
+categoryBox.addEventListener("change", filterServices);
+
+function resetFilters(){
+  searchBox.value = "";
+  categoryBox.value = "all";
+  filterServices();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GovGuide | Admin Dashboard</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f6fc;
+      color: #18233b;
+    }
+    header {
+      background: #172554;
+      color: white;
+      padding: 22px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    header h1 { font-size: 25px; }
+    header p { margin-top: 6px; color: #dbeafe; }
+    main { max-width: 1100px; margin: 35px auto; padding: 0 20px; }
+    .notice {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 24px;
+      box-shadow: 0 5px 20px #17255410;
+    }
+    .card h3 { color: #64748b; font-size: 15px; }
+    .number { font-size: 32px; font-weight: bold; margin-top: 16px; }
+    .section {
+      margin-top: 28px;
+      background: white;
+      border-radius: 15px;
+      padding: 24px;
+      overflow-x: auto;
+    }
+    .section h2 { margin-bottom: 15px; }
+    table { width: 100%; border-collapse: collapse; min-width: 500px; }
+    th, td {
+      padding: 13px;
+      border-bottom: 1px solid #e2e8f0;
+      text-align: left;
+    }
+    th { background: #f8fafc; }
+    #status { margin-top: 15px; line-height: 1.6; }
+    button {
+      background: #fff;
+      color: #172554;
+      border: 0;
+      border-radius: 8px;
+      padding: 11px 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    footer { text-align: center; color: #64748b; padding: 25px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>GovGuide Admin</h1>
+      <p>Administration dashboard</p>
+    </div>
+    <button id="logoutBtn">Sign out</button>
+  </header>
+
+  <main>
+    <div class="notice">
+      <strong>Dashboard setup in progress</strong><br>
+      This page is a dashboard interface only. Live account totals and
+      verified login history will appear after secure backend integration.
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Registered Accounts</h3>
+        <div class="number" id="userCount">—</div>
+      </div>
+      <div class="card">
+        <h3>Successful Login Events</h3>
+        <div class="number" id="loginCount">—</div>
+      </div>
+    </div>
+
+    <section class="section">
+      <h2>Recent Login Activity</h2>
+      <p>Login records will appear here after secure data integration.</p>
+      <p id="status">Checking admin access…</p>
+    </section>
+  </main>
+
+  <footer>© 2026 GovGuide · Admin area</footer>
+
+  <script type="module">
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+    import { initializeApp } from
+      "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCTzZxQ4F3aid5MhBH17a8_BZm3I0ZjOic",
+      authDomain: "govguide-ca4e7.firebaseapp.com",
+      projectId: "govguide-ca4e7",
+      storageBucket: "govguide-ca4e7.firebasestorage.app",
+      messagingSenderId: "493258840997",
+      appId: "1:493258840997:web:4502a4e36933c6a5f4664c",
+      measurementId: "G-CCWY9757MY"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const admins = [
+      "aafrinshaikh31840@gmail.com",
+      "shahezadishaikh98@gmail.com"
+    ];
+
+    const status = document.getElementById("status");
+
+    onAuthStateChanged(auth, user => {
+      if (!user) {
+        status.textContent =
+          "Please sign in with an approved admin account first.";
+        return;
+      }
+
+      if (!admins.includes((user.email || "").toLowerCase())) {
+        status.textContent = "Access denied for this account.";
+        return;
+      }
+
+      status.textContent =
+        "Admin account signed in: " + user.email +
+        ". Secure backend integration is still required.";
+    });
+
+    document.getElementById("logoutBtn").addEventListener("click", async () => {
+      await signOut(auth);
+      location.href = "login.html";
+    });
+  </script>
+</body>
+</html>

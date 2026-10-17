@@ -6,14 +6,25 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-   sendEmailVerification,
+  sendEmailVerification,
   sendPasswordResetEmail,
   signOut,
+  GoogleAuthProvider,
+  signInWithPopup,
   onAuthStateChanged
 } from
   "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
-// Replace these values with your own Firebase project config.
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  doc,
+  getDoc,
+  setDoc,
+  serverTimestamp
+} from
+  "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCTzZxQ4F3aid5MhBH17a8_BZm3I0ZjOic",
@@ -23,24 +34,60 @@ const firebaseConfig = {
   messagingSenderId: "493258840997",
   appId: "1:493258840997:web:4502a4e36933c6a5f4664c",
   measurementId: "G-CCWY9757MY"
-}
+};
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
-// Register a new user and send verification email.
+// Create a profile only if one does not already exist.
+async function ensureUserProfile(user) {
+  if (!user?.email) return;
+
+  try {
+    const userRef = doc(db, "users", user.uid);
+    const existing = await getDoc(userRef);
+
+    if (!existing.exists()) {
+      await setDoc(userRef, {
+        email: user.email,
+        createdAt: serverTimestamp()
+      });
+    }
+  } catch (error) {
+    console.error("User profile tracking failed:", error);
+  }
+}
+
+// Save a successful login event.
+async function recordLogin(user, method) {
+  if (!user?.email) return;
+
+  try {
+    await addDoc(collection(db, "loginEvents"), {
+      email: user.email,
+      method,
+      loginTime: serverTimestamp()
+    });
+  } catch (error) {
+    console.error("Login history could not be saved:", error);
+  }
+}
+
+// Register a new account and send verification email.
 export async function registerUser(email, password) {
   const result = await createUserWithEmailAndPassword(
     auth, email, password
   );
 
+  await ensureUserProfile(result.user);
   await sendEmailVerification(result.user);
   await signOut(auth);
 
   return "Account created. Please check your email to verify it.";
 }
 
-// Sign in only when email is verified.
+// Email/password login.
 export async function loginUser(email, password) {
   const result = await signInWithEmailAndPassword(
     auth, email, password
@@ -51,6 +98,9 @@ export async function loginUser(email, password) {
     throw new Error("Please verify your email before logging in.");
   }
 
+  await ensureUserProfile(result.user);
+  await recordLogin(result.user, "password");
+
   return result.user;
 }
 
@@ -58,12 +108,22 @@ export async function logoutUser() {
   await signOut(auth);
 }
 
-// Keep the page updated when authentication changes.
 export function watchLoginState(callback) {
   return onAuthStateChanged(auth, callback);
 }
+
 export async function resetUserPassword(email) {
   await sendPasswordResetEmail(auth, email);
   return "Password reset link sent. Please check your email inbox and spam folder.";
 }
 
+// Google login.
+export async function loginWithGoogle() {
+  const provider = new GoogleAuthProvider();
+  const result = await signInWithPopup(auth, provider);
+
+  await ensureUserProfile(result.user);
+  await recordLogin(result.user, "google");
+
+  return result.user;
+}

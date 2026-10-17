@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GovGuide | User Dashboard</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f5ff;
+      color: #17356d;
+    }
+    header {
+      background: white;
+      padding: 18px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      box-shadow: 0 3px 15px #17356d10;
+    }
+    .brand { font-size: 26px; font-weight: bold; }
+    .brand span { color: #e99a22; }
+    button, .btn {
+      border: 0;
+      border-radius: 9px;
+      padding: 11px 17px;
+      cursor: pointer;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .logout { background: #17459b; color: white; }
+    main { max-width: 1100px; margin: 35px auto; padding: 0 20px; }
+    .welcome {
+      padding: 35px;
+      border-radius: 18px;
+      color: white;
+      background: linear-gradient(120deg, #17459b, #547ee8);
+    }
+    .welcome h1 { margin-top: 0; font-size: 32px; }
+    #userEmail { overflow-wrap: anywhere; }
+    .section-title { margin: 35px 0 18px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: white;
+      padding: 23px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px #17356d0d;
+      transition: transform .2s;
+    }
+    .card:hover { transform: translateY(-4px); }
+    .card .emoji { font-size: 30px; }
+    .card h3 { margin-bottom: 8px; }
+    .card p { color: #64748b; line-height: 1.5; }
+    .card a { color: #17459b; font-weight: bold; text-decoration: none; }
+    footer { text-align: center; padding: 25px; color: #64748b; }
+    #status { text-align: center; padding: 35px; }
+    .hidden { display: none; }
+    @media (max-width: 500px) {
+      .welcome { padding: 24px; }
+      .welcome h1 { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">Gov<span>Guide</span></div>
+    <button id="logoutBtn" class="logout hidden" type="button">Logout</button>
+  </header>
+
+  <main>
+    <p id="status">Checking your login...</p>
+
+    <section id="dashboardContent" class="hidden">
+      <div class="welcome">
+        <h1>Welcome to GovGuide! 👋</h1>
+        <p>Your one-stop hub for government opportunities and resources.</p>
+        <p>Logged in as: <strong id="userEmail"></strong></p>
+      </div>
+
+      <h2 class="section-title">Explore Your Resources</h2>
+
+      <div class="grid">
+        <article class="card">
+          <div class="emoji">💼</div>
+          <h3>Government Jobs</h3>
+          <p>Explore job categories and career opportunities.</p>
+          <a href="jobs.html">Explore Jobs →</a>
+        </article>
+
+        <article class="card">
+          <div class="emoji">📝</div>
+          <h3>Exams</h3>
+          <p>Find information about competitive examinations.</p>
+          <a href="exams.html">Explore Exams →</a>
+        </article>
+
+        <article class="card">
+          <div class="emoji">🎓</div>
+          <h3>Education</h3>
+          <p>Discover education resources and opportunities.</p>
+          <a href="education.html">Explore Education →</a>
+        </article>
+
+        <article class="card">
+          <div class="emoji">📚</div>
+          <h3>Study Material</h3>
+          <p>Access study resources for your preparation.</p>
+          <a href="study.html">Explore Material →</a>
+        </article>
+
+        <article class="card">
+          <div class="emoji">🏛️</div>
+          <h3>Government Schemes</h3>
+          <p>Learn about schemes and available benefits.</p>
+          <a href="schemes.html">Explore Schemes →</a>
+        </article>
+
+        <article class="card">
+          <div class="emoji">🌐</div>
+          <h3>Citizen Services</h3>
+          <p>Find useful public-service information.</p>
+          <a href="services.html">Explore Services →</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 GovGuide | Government Information Hub</footer>
+
+  <script type="module">
+    import { watchLoginState, logoutUser } from "./js/firebase-auth.js";
+
+    const status = document.getElementById("status");
+    const content = document.getElementById("dashboardContent");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    watchLoginState((user) => {
+      if (!user || !user.emailVerified) {
+        window.location.replace("login.html");
+        return;
+      }
+
+      status.classList.add("hidden");
+      content.classList.remove("hidden");
+      logoutBtn.classList.remove("hidden");
+      document.getElementById("userEmail").textContent = user.email;
+    });
+
+    logoutBtn.addEventListener("click", async () => {
+      logoutBtn.disabled = true;
+      try {
+        await logoutUser();
+        window.location.replace("login.html");
+      } catch (error) {
+        console.error("Logout failed:", error);
+        alert("Logout failed. Please try again.");
+        logoutBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

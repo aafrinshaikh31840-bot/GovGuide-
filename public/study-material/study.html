@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Material | GovGuide</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f4f7ff;color:#24334d;line-height:1.6}
+header{background:white;box-shadow:0 3px 15px #14213d12;position:sticky;top:0;z-index:10}
+.nav{max-width:1150px;margin:auto;padding:16px 22px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.logo{font-size:28px;font-weight:800;color:#2457d6;text-decoration:none}
+nav{display:flex;gap:16px;flex-wrap:wrap}
+nav a{font-size:14px;font-weight:bold;color:#334155;text-decoration:none}
+nav a:hover{color:#2457d6}
+.hero{background:linear-gradient(120deg,#14213d,#2457d6);color:white;padding:48px 22px}
+.hero-inner{max-width:1100px;margin:auto}
+.eyebrow{font-size:13px;letter-spacing:2px;color:#cfe0ff;font-weight:bold}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.2;margin:12px 0}
+.hero p{max-width:720px;color:#e5edff}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.pill{background:#ffffff18;border:1px solid #ffffff50;padding:7px 13px;border-radius:30px;font-size:13px}
+main{max-width:1100px;margin:35px auto;padding:0 22px}
+h2{font-size:28px;color:#14213d}
+.subtitle{color:#64748b;margin:5px 0 22px}
+.filters{display:grid;grid-template-columns:2fr 1fr auto;gap:12px;background:white;border:1px solid #e1e8f5;border-radius:16px;padding:20px;margin-bottom:25px}
+input,select,button{min-width:0;width:100%;padding:12px;border-radius:9px;border:1px solid #cbd5e1;font:inherit;background:white}
+button{background:#2457d6;color:white;border:0;font-weight:bold;cursor:pointer}
+button:hover{background:#1744b5}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.card{background:white;border:1px solid #e0e7f3;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:12px;box-shadow:0 5px 20px #1725540a;transition:.2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 25px #17255416}
+.card-head{display:flex;align-items:center;gap:14px}
+.icon{width:58px;height:58px;min-width:58px;border-radius:17px;display:flex;align-items:center;justify-content:center;font-size:27px;color:white;box-shadow:0 5px 13px #14213d20}
+.blue{background:linear-gradient(135deg,#60a5fa,#2563eb)}
+.purple{background:linear-gradient(135deg,#c084fc,#7c3aed)}
+.green{background:linear-gradient(135deg,#34d399,#059669)}
+.orange{background:linear-gradient(135deg,#fbbf24,#ea580c)}
+.red{background:linear-gradient(135deg,#fb7185,#e11d48)}
+.teal{background:linear-gradient(135deg,#2dd4bf,#0f766e)}
+.tag{display:inline-block;width:fit-content;padding:4px 10px;background:#e8efff;color:#2049ad;border-radius:30px;font-size:12px;font-weight:bold}
+.card h3{font-size:18px;color:#14213d;line-height:1.35}
+.card p{font-size:14px;color:#58677e}
+.card .desc{flex:1}
+.card a{display:block;text-align:center;text-decoration:none;background:#edf3ff;color:#204bc0;border-radius:9px;padding:11px;font-weight:bold}
+.card a:hover{background:#dbe7ff}
+.empty{display:none;background:white;padding:25px;border-radius:12px;text-align:center;grid-column:1/-1}
+.notice{margin:26px 0;padding:18px;background:#fff8e6;border:1px solid #f4d78c;color:#754d00;border-radius:12px;font-size:14px}
+.quick{padding:25px;background:#eaf1ff;border-radius:15px;margin-top:25px}
+.quick h2{font-size:23px}
+.quick-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+.quick-links a{padding:10px 14px;border-radius:9px;background:white;color:#204bc0;text-decoration:none;font-weight:bold;font-size:14px}
+footer{margin-top:40px;background:#122344;color:#e5edff;padding:30px 22px}
+.footer-inner{max-width:1100px;margin:auto;display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}
+footer h3{color:white;margin-bottom:8px}
+footer a{color:white;text-decoration:none;font-size:13px;margin-right:12px}
+footer p{font-size:13px}
+@media(max-width:850px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.filters{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.cards,.filters{grid-template-columns:1fr}.nav{align-items:flex-start}.hero{padding:38px 22px}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="nav">
+<a class="logo" href="index.html">GovGuide</a>
+<nav>
+<a href="index.html">Home</a>
+<a href="education.html">Education</a>
+<a href="jobs.html">Government Jobs</a>
+<a href="exams.html">Exams</a>
+<a href="study.html">Study Material</a>
+<a href="schemes.html">Schemes</a>
+<a href="services.html">Services</a>
+<a href="login.html">Login</a>
+</nav>
+</div>
+</header>
+
+<section class="hero">
+<div class="hero-inner">
+<div class="eyebrow">LEARN • PRACTICE • PREPARE</div>
+<h1>Your Study Material<br>Library</h1>
+<p>Explore learning resources, exam preparation topics, computer science notes and useful official learning platforms—all in one place.</p>
+<div class="pills">
+<span class="pill">📘 Subject Notes</span>
+<span class="pill">📝 Exam Preparation</span>
+<span class="pill">💻 Computer Science</span>
+<span class="pill">🎯 Practice Resources</span>
+</div>
+</div>
+</section>
+
+<main>
+<h2>Explore Learning Resources</h2>
+<p class="subtitle">Search for a topic or filter resources by category.</p>
+
+<div class="filters">
+<input id="searchInput" type="search" placeholder="Search notes, subjects or resources...">
+<select id="categoryFilter">
+<option value="all">All Categories</option>
+<option value="computer">Computer Science</option>
+<option value="competitive">Competitive Exams</option>
+<option value="school">School Studies</option>
+<option value="skills">Digital Skills</option>
+</select>
+<button id="resetBtn" type="button">↻ Reset</button>
+</div>
+
+<div class="cards" id="resourceCards">
+
+<article class="card" data-category="computer">
+<div class="card-head"><div class="icon blue">💻</div><div><span class="tag">Computer Science</span><h3>Operating Systems</h3></div></div>
+<p class="desc">Explore processes, memory management, deadlocks, scheduling and other OS topics.</p>
+<a href="https://www.geeksforgeeks.org/operating-systems/" target="_blank" rel="noopener">Explore OS Resources ↗</a>
+</article>
+
+<article class="card" data-category="computer">
+<div class="card-head"><div class="icon purple">🌐</div><div><span class="tag">Computer Science</span><h3>Computer Networks</h3></div></div>
+<p class="desc">Learn network layers, protocols, transmission media and networking fundamentals.</p>
+<a href="https://www.geeksforgeeks.org/computer-network-tutorials/" target="_blank" rel="noopener">Explore Networking ↗</a>
+</article>
+
+<article class="card" data-category="computer">
+<div class="card-head"><div class="icon green">☕</div><div><span class="tag">Programming</span><h3>Java Programming</h3></div></div>
+<p class="desc">Revise Java basics, data types, classes, inheritance, methods and object-oriented concepts.</p>
+<a href="https://dev.java/learn/" target="_blank" rel="noopener">Learn Java ↗</a>
+</article>
+
+<article class="card" data-category="computer">
+<div class="card-head"><div class="icon orange">⌨</div><div><span class="tag">Web Development</span><h3>HTML, CSS and JavaScript</h3></div></div>
+<p class="desc">Learn website structure, styling, responsive layouts and interactive page basics.</p>
+<a href="https://developer.mozilla.org/en-US/docs/Learn_web_development" target="_blank" rel="noopener">MDN Learning Guide ↗</a>
+</article>
+
+<article class="card" data-category="competitive">
+<div class="card-head"><div class="icon red">🎯</div><div><span class="tag">Competitive Exams</span><h3>SSC Exam Preparation</h3></div></div>
+<p class="desc">Check official SSC exam notices, syllabuses and recruitment information before preparing.</p>
+<a href="https://ssc.gov.in/" target="_blank" rel="noopener">Official SSC Portal ↗</a>
+</article>
+
+<article class="card" data-category="competitive">
+<div class="card-head"><div class="icon teal">🏛</div><div><span class="tag">Competitive Exams</span><h3>UPSC Preparation</h3></div></div>
+<p class="desc">Find official examination notifications, syllabus information and previous-paper resources.</p>
+<a href="https://upsc.gov.in/" target="_blank" rel="noopener">Official UPSC Portal ↗</a>
+</article>
+
+<article class="card" data-category="competitive">
+<div class="card-head"><div class="icon blue">📰</div><div><span class="tag">General Knowledge</span><h3>Current Affairs and GK</h3></div></div>
+<p class="desc">Build general awareness using reliable news sources and official government updates.</p>
+<a href="https://www.pib.gov.in/" target="_blank" rel="noopener">Press Information Bureau ↗</a>
+</article>
+
+<article class="card" data-category="school">
+<div class="card-head"><div class="icon purple">📚</div><div><span class="tag">School Studies</span><h3>NCERT Textbooks</h3></div></div>
+<p class="desc">Access school textbook resources for relevant subjects and classes.</p>
+<a href="https://ncert.nic.in/textbook.php" target="_blank" rel="noopener">Official NCERT Textbooks ↗</a>
+</article>
+
+<article class="card" data-category="skills">
+<div class="card-head"><div class="icon green">📈</div><div><span class="tag">Digital Skills</span><h3>Digital Learning</h3></div></div>
+<p class="desc">Explore online learning resources to develop digital knowledge and practical skills.</p>
+<a href="https://swayam.gov.in/" target="_blank" rel="noopener">SWAYAM Learning Portal ↗</a>
+</article>
+
+<article class="card" data-category="skills">
+<div class="card-head"><div class="icon orange">🔐</div><div><span class="tag">Digital Skills</span><h3>Cyber Safety Basics</h3></div></div>
+<p class="desc">Learn about safe online practices, passwords, digital awareness and cyber safety.</p>
+<a href="https://www.cybercrime.gov.in/" target="_blank" rel="noopener">National Cyber Crime Portal ↗</a>
+</article>
+
+<div class="empty" id="emptyMessage">No matching resources found. Try another search or category.</div>
+</div>
+
+<div class="notice"><strong>Important:</strong> GovGuide is a student information project, not an official government website. External resources open on their respective websites. Always verify exam syllabus and requirements from the relevant official source.</div>
+
+<section class="quick">
+<h2>Quick Learning Links</h2>
+<p class="subtitle">Useful platforms for learning and preparation.</p>
+<div class="quick-links">
+<a href="https://swayam.gov.in/" target="_blank" rel="noopener">SWAYAM ↗</a>
+<a href="https://diksha.gov.in/" target="_blank" rel="noopener">DIKSHA ↗</a>
+<a href="https://ncert.nic.in/" target="_blank" rel="noopener">NCERT ↗</a>
+<a href="https://dev.java/learn/" target="_blank" rel="noopener">Java Learning ↗</a>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="footer-inner">
+<div><h3>GovGuide</h3><p>Your guide to government information, education, jobs,<br>exams and useful citizen services.</p></div>
+<div><h3>Quick Links</h3>
+<a href="index.html">Home</a><a href="education.html">Education</a><a href="jobs.html">Jobs</a><a href="exams.html">Exams</a><a href="study.html">Study Material</a><a href="schemes.html">Schemes</a><a href="services.html">Services</a>
+</div>
+<p>© 2026 GovGuide. Student Web Development Project.</p>
+</div>
+</footer>
+
+<script>
+const searchInput = document.getElementById('searchInput');
+const categoryFilter = document.getElementById('categoryFilter');
+const cards = Array.from(document.querySelectorAll('.card'));
+const emptyMessage = document.getElementById('emptyMessage');
+
+function filterResources(){
+  const query = searchInput.value.trim().toLowerCase();
+  const category = categoryFilter.value;
+  let visible = 0;
+
+  cards.forEach(card => {
+    const matchesText = card.innerText.toLowerCase().includes(query);
+    const matchesCategory = category === 'all' || card.dataset.category === category;
+    const show = matchesText && matchesCategory;
+    card.style.display = show ? 'flex' : 'none';
+    if(show) visible++;
+  });
+
+  emptyMessage.style.display = visible ? 'none' : 'block';
+}
+
+searchInput.addEventListener('input', filterResources);
+categoryFilter.addEventListener('change', filterResources);
+document.getElementById('resetBtn').addEventListener('click', () => {
+  searchInput.value = '';
+  categoryFilter.value = 'all';
+  filterResources();
+});
+</script>
+</body>
+</html>

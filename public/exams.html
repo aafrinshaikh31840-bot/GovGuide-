@@ -1,0 +1,422 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GovGuide | Government Exams</title>
+<style>
+:root {
+    --blue:#1746a2;
+    --bright:#2878e5;
+    --ink:#172b4d;
+    --muted:#64748b;
+    --bg:#f4f7fc;
+    --border:#e0e8f3;
+}
+* { box-sizing:border-box; }
+body {
+    margin:0;
+    font-family:"Segoe UI",Arial,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.6;
+}
+a { text-decoration:none; }
+header {
+    background:#fff;
+    padding:15px 5%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+    flex-wrap:wrap;
+    box-shadow:0 3px 15px #142c5010;
+}
+.logo { display:flex; align-items:center; gap:12px; color:inherit; }
+.logo-mark {
+    display:grid;
+    place-items:center;
+    width:48px;
+    height:48px;
+    border-radius:14px;
+    color:#fff;
+    background:linear-gradient(135deg,#1746a2,#3989f4);
+    font-size:26px;
+    font-weight:800;
+}
+.logo h2 { margin:0; font-size:23px; }
+.logo p { margin:0; color:var(--muted); font-size:12px; }
+nav { display:flex; gap:15px; flex-wrap:wrap; }
+nav a { color:#35445e; font-size:13px; font-weight:600; }
+nav a:hover { color:var(--bright); }
+.login-btn {
+    color:white;
+    background:var(--blue);
+    padding:10px 18px;
+    border-radius:9px;
+    font-weight:700;
+}
+.hero {
+    width:90%;
+    max-width:1250px;
+    margin:28px auto 0;
+    padding:60px 7%;
+    border-radius:25px;
+    color:white;
+    background:linear-gradient(120deg,#102e70,#1d60c9 65%,#3989f4);
+}
+.eyebrow { font-size:13px; font-weight:800; letter-spacing:2px; }
+.hero h1 { max-width:700px; font-size:clamp(32px,5vw,51px); line-height:1.15; margin:15px 0; }
+.hero p { max-width:680px; color:#e5edff; }
+.hero-button {
+    display:inline-block;
+    margin-top:12px;
+    padding:12px 20px;
+    border-radius:9px;
+    color:var(--blue);
+    background:white;
+    font-weight:700;
+}
+.stats {
+    width:90%;
+    max-width:1150px;
+    margin:22px auto 0;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+.stat {
+    text-align:center;
+    padding:19px;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:14px;
+}
+.stat strong { display:block; color:var(--blue); font-size:23px; }
+.stat span { color:var(--muted); font-size:13px; }
+.section { width:90%; max-width:1150px; margin:45px auto; }
+.heading { margin-bottom:22px; }
+.heading h2 { margin:0 0 7px; font-size:29px; }
+.heading p { margin:0; color:var(--muted); }
+.tools {
+    display:grid;
+    grid-template-columns:minmax(180px,1fr) minmax(180px,240px) auto;
+    gap:12px;
+    margin-bottom:12px;
+}
+.tools input,.tools select {
+    width:100%;
+    min-width:0;
+    padding:13px;
+    border:1px solid #d6e0ef;
+    border-radius:10px;
+    background:white;
+    color:var(--ink);
+    font:inherit;
+}
+.reset-btn {
+    padding:12px 18px;
+    border:0;
+    border-radius:10px;
+    background:#e5edff;
+    color:var(--blue);
+    font-weight:700;
+    cursor:pointer;
+}
+.result { color:var(--muted); font-size:13px; margin:10px 0 18px; }
+.cards {
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:20px;
+}
+.card {
+    display:flex;
+    flex-direction:column;
+    padding:24px;
+    border:1px solid var(--border);
+    border-radius:17px;
+    background:white;
+    box-shadow:0 5px 20px #1a37610a;
+    transition:transform .2s,box-shadow .2s;
+}
+.card:hover { transform:translateY(-4px); box-shadow:0 12px 28px #1a376116; }
+.icon {
+    width:54px;
+    height:54px;
+    display:grid;
+    place-items:center;
+    background:#edf3ff;
+    border-radius:15px;
+    font-size:28px;
+}
+.card h3 { margin:16px 0 8px; font-size:20px; }
+.card p { color:var(--muted); font-size:14px; margin:0 0 15px; }
+.tag {
+    align-self:flex-start;
+    margin-bottom:8px;
+    padding:5px 10px;
+    border-radius:25px;
+    background:#eaf1ff;
+    color:var(--blue);
+    font-size:11px;
+    font-weight:800;
+}
+.card-link { margin-top:auto; padding-top:10px; color:var(--bright); font-weight:700; font-size:14px; }
+.card-link:hover { color:#10367f; }
+.empty {
+    grid-column:1/-1;
+    padding:30px;
+    text-align:center;
+    background:white;
+    border:1px dashed #bdcce1;
+    border-radius:15px;
+    color:var(--muted);
+}
+.notice {
+    display:flex;
+    gap:15px;
+    padding:24px;
+    background:#eaf2ff;
+    border:1px solid #d8e6ff;
+    border-radius:16px;
+}
+.notice-icon { font-size:28px; }
+.notice h3 { margin:0 0 6px; }
+.notice p { margin:0; color:#4f607a; font-size:14px; }
+.quick-links { display:flex; gap:12px; flex-wrap:wrap; }
+.quick-links a {
+    padding:12px 16px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    background:white;
+    color:var(--blue);
+    font-size:14px;
+    font-weight:600;
+}
+footer { margin-top:55px; padding:35px 5%; background:#102447; color:#dce7ff; }
+.footer-inner {
+    max-width:1150px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    gap:25px;
+    flex-wrap:wrap;
+}
+footer h2,footer h3 { color:white; margin-top:0; }
+footer p { max-width:480px; font-size:13px; }
+.footer-links { display:flex; gap:14px; flex-wrap:wrap; }
+.footer-links a { color:white; font-size:13px; }
+.copyright { max-width:1150px; margin:24px auto 0; padding-top:16px; border-top:1px solid #ffffff25; font-size:12px; }
+[hidden] { display:none !important; }
+@media(max-width:850px) {
+    header { justify-content:center; }
+    nav { justify-content:center; }
+    .cards { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .tools { grid-template-columns:1fr 1fr; }
+    .reset-btn { grid-column:1/-1; }
+}
+@media(max-width:540px) {
+    .hero { padding:40px 25px; }
+    .stats,.cards,.tools { grid-template-columns:1fr; }
+    .reset-btn { grid-column:auto; }
+    .heading h2 { font-size:25px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a class="logo" href="index.html">
+        <div class="logo-mark">G</div>
+        <div><h2>GovGuide</h2><p>Government Information Hub</p></div>
+    </a>
+    <nav aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="education.html">Education</a>
+        <a href="jobs.html">Jobs</a>
+        <a href="exams.html">Exams</a>
+        <a href="study.html">Study Material</a>
+        <a href="schemes.html">Schemes</a>
+        <a href="services.html">Services</a>
+    </nav>
+    <a class="login-btn" href="login.html">Login</a>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="eyebrow">📝 GOVERNMENT EXAMS HUB</div>
+        <h1>Prepare Today. Achieve Tomorrow.</h1>
+        <p>Explore government examination categories, preparation resources and official examination websites in one place.</p>
+        <a class="hero-button" href="#exam-directory">Explore Exams →</a>
+    </section>
+
+    <section class="stats">
+        <div class="stat"><strong>06</strong><span>Exam Categories</span></div>
+        <div class="stat"><strong>Search</strong><span>Find Exams Easily</span></div>
+        <div class="stat"><strong>Official</strong><span>Reference Websites</span></div>
+    </section>
+
+    <section class="section" id="exam-directory">
+        <div class="heading">
+            <h2>Explore Government Exams</h2>
+            <p>Search by exam name or filter by category to find relevant information.</p>
+        </div>
+
+        <div class="tools">
+            <input type="search" id="examSearch" placeholder="🔎 Search SSC, UPSC, Railway..." aria-label="Search exams">
+            <select id="examCategory" aria-label="Filter exam category">
+                <option value="all">All Categories</option>
+                <option value="ssc">SSC Exams</option>
+                <option value="upsc">UPSC Exams</option>
+                <option value="railway">Railway Exams</option>
+                <option value="banking">Banking Exams</option>
+                <option value="gujarat">Gujarat State Exams</option>
+                <option value="defence">Defence Exams</option>
+            </select>
+            <button class="reset-btn" id="resetExams" type="button">Reset Filters</button>
+        </div>
+
+        <p class="result" id="examResult" aria-live="polite">Showing 6 categories</p>
+
+        <div class="cards" id="examCards">
+            <article class="card" data-category="ssc">
+                <div class="icon">📋</div>
+                <h3>SSC Exams</h3>
+                <p>Learn about SSC CGL, CHSL, MTS and other Staff Selection Commission examinations for eligible candidates.</p>
+                <span class="tag">CENTRAL GOVERNMENT</span>
+                <a class="card-link" href="https://ssc.gov.in/" target="_blank" rel="noopener noreferrer">SSC Official Website ↗</a>
+            </article>
+
+            <article class="card" data-category="upsc">
+                <div class="icon">🏛️</div>
+                <h3>UPSC Exams</h3>
+                <p>Explore Civil Services and other Union Public Service Commission examinations, notifications and syllabus details.</p>
+                <span class="tag">CIVIL SERVICES</span>
+                <a class="card-link" href="https://upsc.gov.in/" target="_blank" rel="noopener noreferrer">UPSC Official Website ↗</a>
+            </article>
+
+            <article class="card" data-category="railway">
+                <div class="icon">🚆</div>
+                <h3>Railway Exams</h3>
+                <p>Find official railway recruitment notices and information about examinations for different posts.</p>
+                <span class="tag">RAILWAY RECRUITMENT</span>
+                <a class="card-link" href="https://www.rrbcdg.gov.in/" target="_blank" rel="noopener noreferrer">Railway Recruitment Board ↗</a>
+                <a class="card-link" href="https://indianrailways.gov.in/" target="_blank" rel="noopener noreferrer">Indian Railways ↗</a>
+            </article>
+
+            <article class="card" data-category="banking">
+                <div class="icon">🏦</div>
+                <h3>Banking Exams</h3>
+                <p>Explore banking recruitment information, examination notifications and eligibility requirements.</p>
+                <span class="tag">BANKING CAREERS</span>
+                <a class="card-link" href="https://www.ibps.in/" target="_blank" rel="noopener noreferrer">IBPS Official Website ↗</a>
+                <a class="card-link" href="https://sbi.co.in/web/careers" target="_blank" rel="noopener noreferrer">SBI Careers ↗</a>
+            </article>
+
+            <article class="card" data-category="gujarat">
+                <div class="icon">📍</div>
+                <h3>Gujarat State Exams</h3>
+                <p>Check state-level recruitment and examination information from Gujarat's official recruitment authorities.</p>
+                <span class="tag">GUJARAT GOVERNMENT</span>
+                <a class="card-link" href="https://gpsc.gujarat.gov.in/" target="_blank" rel="noopener noreferrer">GPSC Official Website ↗</a>
+                <a class="card-link" href="https://ojas.gujarat.gov.in/" target="_blank" rel="noopener noreferrer">OJAS Gujarat ↗</a>
+            </article>
+
+            <article class="card" data-category="defence">
+                <div class="icon">🛡️</div>
+                <h3>Defence Exams</h3>
+                <p>Explore official recruitment and examination information for eligible candidates interested in defence services.</p>
+                <span class="tag">DEFENCE SERVICES</span>
+                <a class="card-link" href="https://upsc.gov.in/" target="_blank" rel="noopener noreferrer">UPSC Exam Information ↗</a>
+                <a class="card-link" href="https://joinindianarmy.nic.in/" target="_blank" rel="noopener noreferrer">Join Indian Army ↗</a>
+            </article>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="notice">
+            <div class="notice-icon">📢</div>
+            <div>
+                <h3>Important Examination Notice</h3>
+                <p>GovGuide is a student information project, not an official government website. Exam dates, eligibility, age limits, syllabus and application deadlines can change. Always read the latest official notification before applying. The categories above are information links, not confirmation of currently open vacancies.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="heading">
+            <h2>Quick Access</h2>
+            <p>Visit official recruitment and examination websites.</p>
+        </div>
+        <div class="quick-links">
+            <a href="https://ssc.gov.in/" target="_blank" rel="noopener noreferrer">SSC ↗</a>
+            <a href="https://upsc.gov.in/" target="_blank" rel="noopener noreferrer">UPSC ↗</a>
+            <a href="https://www.ibps.in/" target="_blank" rel="noopener noreferrer">IBPS ↗</a>
+            <a href="https://gpsc.gujarat.gov.in/" target="_blank" rel="noopener noreferrer">GPSC ↗</a>
+            <a href="https://ojas.gujarat.gov.in/" target="_blank" rel="noopener noreferrer">OJAS Gujarat ↗</a>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <div>
+            <h2>GovGuide</h2>
+            <p>Your guide to government information, education, jobs, exams and useful citizen services.</p>
+        </div>
+        <div>
+            <h3>Quick Links</h3>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="education.html">Education</a>
+                <a href="jobs.html">Jobs</a>
+                <a href="exams.html">Exams</a>
+                <a href="study.html">Study Material</a>
+                <a href="schemes.html">Schemes</a>
+                <a href="services.html">Services</a>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">© 2026 GovGuide. Student Web Development Project.</div>
+</footer>
+
+<script>
+const examSearch = document.getElementById("examSearch");
+const examCategory = document.getElementById("examCategory");
+const examCards = Array.from(document.querySelectorAll("#examCards .card"));
+const examResult = document.getElementById("examResult");
+
+function filterExams() {
+    const query = examSearch.value.trim().toLowerCase();
+    const category = examCategory.value;
+    let count = 0;
+
+    examCards.forEach(function(card) {
+        const matchesText = card.textContent.toLowerCase().includes(query);
+        const matchesCategory = category === "all" || card.dataset.category === category;
+        const visible = matchesText && matchesCategory;
+
+        card.hidden = !visible;
+        if (visible) count++;
+    });
+
+    examResult.textContent = count === 0
+        ? "No matching exam categories found. Try another search."
+        : "Showing " + count + " of " + examCards.length + " categories";
+}
+
+examSearch.addEventListener("input", filterExams);
+examCategory.addEventListener("change", filterExams);
+
+document.getElementById("resetExams").addEventListener("click", function() {
+    examSearch.value = "";
+    examCategory.value = "all";
+    filterExams();
+    examSearch.focus();
+});
+
+filterExams();
+</script>
+
+</body>
+</html>
