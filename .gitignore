@@ -88,3 +88,7 @@ html.login.txt
 
 govguide-hero_files/
 css/.vscode/
+firebase-backup.json
+firebase-hosting-backup.json
+js/firebase-auth-backup.js
+login-before-google.html
