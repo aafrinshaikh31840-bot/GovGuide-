@@ -1282,14 +1282,33 @@
             menuToggle.setAttribute("aria-expanded", isOpen);
         });
 
-        // Close mobile menu after selecting a link
-        document.querySelectorAll("#navLinks a").forEach(function (link) {
-            link.addEventListener("click", function () {
-                navLinks.classList.remove("show");
-                menuToggle.setAttribute("aria-expanded", "false");
-            });
-        });
+       // Navigation: show selected section at the top
+document.querySelectorAll('#navLinks a[href^="#"]').forEach(function (link) {
+    link.addEventListener("click", function (event) {
+        event.preventDefault();
 
+        const targetId = this.getAttribute("href").substring(1);
+        const target = document.getElementById(targetId);
+
+        navLinks.classList.remove("show");
+        menuToggle.setAttribute("aria-expanded", "false");
+
+        if (target) {
+            const header = document.querySelector(".navbar");
+            const headerHeight = header ? header.offsetHeight : 0;
+
+            const top = target.getBoundingClientRect().top
+                + window.pageYOffset - headerHeight;
+
+            window.scrollTo({
+                top: Math.max(0, top),
+                behavior: "smooth"
+            });
+
+            history.pushState(null, "", "#" + targetId);
+        }
+    });
+});
         // Search website sections
         const searchableSections = [
             { name: "education", id: "education" },

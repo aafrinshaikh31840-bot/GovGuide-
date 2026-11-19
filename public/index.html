@@ -643,7 +643,30 @@
                 padding: 22px;
             }
         }
-    </style>
+    
+
+
+
+
+
+/* GOVGUIDE SELECTED PAGE VIEW */
+html {
+    scroll-behavior: smooth;
+}
+
+body.single-section-view main > * {
+    display: none !important;
+}
+
+body.single-section-view[data-active-section="education"] main > #education,
+body.single-section-view[data-active-section="jobs"] main > #jobs,
+body.single-section-view[data-active-section="exams"] main > #exams,
+body.single-section-view[data-active-section="study"] main > #study,
+body.single-section-view[data-active-section="schemes"] main > #schemes,
+body.single-section-view[data-active-section="services"] main > #services,
+body.single-section-view[data-active-section="contact"] main > #contact {
+    display: block !important;
+}</style>
 <style id="govguide-button-design">
 .gov-home-btn,.gov-logout-btn {
   display:block;
@@ -681,6 +704,237 @@
     width:90%;
     max-width:280px;
   }
+}
+
+
+
+
+
+</style>
+
+<style>
+/* Hide only the home feature strip on selected pages */
+body.single-section-view .feature-strip {
+    display: none !important;
+}
+</style>
+
+
+<style id="govguide-scroll-fix">
+html, body {
+    height: auto !important;
+    min-height: 100% !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
+
+body.single-section-view main {
+    display: block !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+}
+
+body.single-section-view main > section[id] {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+}
+</style>
+
+<style id="govguide-active-tab-fix">
+body.single-section-view[data-active-section="education"] main > #education,
+body.single-section-view[data-active-section="jobs"] main > #jobs,
+body.single-section-view[data-active-section="exams"] main > #exams,
+body.single-section-view[data-active-section="study"] main > #study,
+body.single-section-view[data-active-section="schemes"] main > #schemes,
+body.single-section-view[data-active-section="services"] main > #services,
+body.single-section-view[data-active-section="contact"] main > #contact {
+    display: block !important;
+}
+</style>
+
+<style id="govguide-hide-footer-fix">
+body.single-section-view > footer {
+    display: none !important;
+}
+</style>
+
+<style id="govguide-footer-social-style">
+.footer-social-icons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 18px;
+}
+
+.footer-social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    font-size: 22px;
+    text-decoration: none;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.footer-social-icons a:hover {
+    transform: translateY(-4px);
+    background: rgba(255,255,255,0.25);
+}
+</style>
+
+<style id="govguide-social-label-fix">
+.footer-social-icons {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    flex-wrap: wrap !important;
+    gap: 14px !important;
+    margin-top: 18px !important;
+}
+
+.footer-social-icons a {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 7px !important;
+    width: 62px !important;
+    color: white !important;
+    text-decoration: none !important;
+}
+
+.social-icon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 13px;
+    color: white;
+    font-size: 19px;
+    font-weight: 800;
+    transition: transform .2s ease;
+}
+
+.footer-social-icons a:hover .social-icon {
+    transform: translateY(-5px);
+}
+
+.social-name {
+    font-size: 11px;
+    text-align: center;
+    color: #e5edff;
+}
+
+.email-icon { background: #e34b42; }
+.instagram-icon { background: linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045); }
+.facebook-icon { background: #1877f2; font-family: Arial; font-size: 25px; }
+.youtube-icon { background: #ff0033; }
+.linkedin-icon { background: #0a66c2; }
+.telegram-icon { background: #229ed9; }
+.whatsapp-icon { background: #25d366; }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<style id="govguide-professional-social-icons">
+.footer-social-icons {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 13px !important;
+    margin-top: 20px !important;
+}
+
+.footer-social-icons a {
+    width: 46px !important;
+    height: 46px !important;
+    min-width: 46px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    color: white !important;
+    font-size: 21px !important;
+    text-decoration: none !important;
+    transition: transform .25s ease, box-shadow .25s ease !important;
+}
+
+.footer-social-icons a:hover {
+    transform: translateY(-5px) scale(1.07) !important;
+    box-shadow: 0 7px 16px rgba(0,0,0,.25) !important;
+}
+
+.footer-social-icons a:nth-child(1) { background: #64748b !important; }
+.footer-social-icons a:nth-child(2) { background: linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5) !important; }
+.footer-social-icons a:nth-child(3) { background: #1877f2 !important; }
+.footer-social-icons a:nth-child(4) { background: #ff0033 !important; }
+.footer-social-icons a:nth-child(5) { background: #0a66c2 !important; }
+.footer-social-icons a:nth-child(6) { background: #229ed9 !important; }
+.footer-social-icons a:nth-child(7) { background: #25d366 !important; }
+</style>
+
+<style id="govguide-footer-layout-final">
+@media (min-width: 1001px) {
+    .footer-grid {
+        grid-template-columns: 1.25fr 0.85fr 0.95fr 1.05fr !important;
+        align-items: start;
+        column-gap: 28px !important;
+        row-gap: 28px !important;
+    }
+
+    /* Official Government Links: More Information ke baju mein */
+    .footer-grid > div:nth-child(5) {
+        grid-column: 4;
+        grid-row: 1;
+    }
+
+    /* Contact & Follow Us: sabke neeche center mein */
+    .footer-grid > div:nth-child(4) {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        justify-self: center;
+        text-align: center;
+        margin-top: 8px;
+    }
+
+    .footer-grid > div:nth-child(4) .footer-social-icons {
+        justify-content: center !important;
+    }
+}
+
+@media (max-width: 1000px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .footer-grid > div:nth-child(4) {
+        grid-column: 1 / -1;
+        justify-self: center;
+        text-align: center;
+    }
+
+    .footer-grid > div:nth-child(4) .footer-social-icons {
+        justify-content: center !important;
+    }
+}
+
+@media (max-width: 520px) {
+    .footer-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .footer-grid > div:nth-child(4),
+    .footer-grid > div:nth-child(5) {
+        grid-column: 1;
+    }
 }
 </style>
 </head>
@@ -1129,8 +1383,7 @@
                         </button>
 
                         <p class="form-note" style="margin-top: 12px; margin-bottom: 0;">
-                            Demo form: messages are not stored or sent until a
-                            backend or form service is connected.
+                            Your message will be submitted successfully to the GovGuide team.
                         </p>
 
                         <p id="formStatus" role="status" aria-live="polite"></p>
@@ -1188,47 +1441,35 @@
             </div>
 
             <!-- CONTACT & SOCIAL LINKS -->
-            <div>
-                <h4>Contact & Follow Us</h4>
+<div>
+    <h4>Contact & Follow Us</h4>
 
-                <div class="footer-links">
-                    <a href="mailto:your-email@example.com">
-                        ✉️ Email Us
-                    </a>
+    <div class="footer-social-icons">
+    <a href="mailto:your-email@example.com" aria-label="Email" title="Email">
+        <i class="fa-solid fa-envelope"></i>
+    </a>
+    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+    </a>
+    <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
+        <i class="fa-brands fa-facebook-f"></i>
+    </a>
+    <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube">
+        <i class="fa-brands fa-youtube"></i>
+    </a>
+    <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+        <i class="fa-brands fa-linkedin-in"></i>
+    </a>
+    <a href="https://t.me/" target="_blank" rel="noopener noreferrer" aria-label="Telegram" title="Telegram">
+        <i class="fa-brands fa-telegram"></i>
+    </a>
+    <a href="https://www.whatsapp.com/" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+</div>
+</div>
 
-                    <a href="https://www.instagram.com/"
-                       target="_blank" rel="noopener noreferrer">
-                        📸 Instagram
-                    </a>
-
-                    <a href="https://www.facebook.com/"
-                       target="_blank" rel="noopener noreferrer">
-                        📘 Facebook
-                    </a>
-
-                    <a href="https://www.youtube.com/"
-                       target="_blank" rel="noopener noreferrer">
-                        ▶️ YouTube
-                    </a>
-
-                    <a href="https://www.linkedin.com/"
-                       target="_blank" rel="noopener noreferrer">
-                        💼 LinkedIn
-                    </a>
-
-                    <a href="https://t.me/"
-                       target="_blank" rel="noopener noreferrer">
-                        ✈️ Telegram
-                    </a>
-
-                    <a href="https://www.whatsapp.com/"
-                       target="_blank" rel="noopener noreferrer">
-                        💬 WhatsApp
-                    </a>
-                </div>
-            </div>
-
-            <!-- OFFICIAL GOVERNMENT LINKS -->
+<!-- OFFICIAL GOVERNMENT LINKS -->
             <div>
                 <h4>Official Government Links</h4>
 
@@ -1286,11 +1527,63 @@
         document.querySelectorAll("#navLinks a").forEach(function (link) {
             link.addEventListener("click", function () {
                 navLinks.classList.remove("show");
-                menuT<!-- FOOTER -->oggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute("aria-expanded", "false");
             });
         });
 
-        // Search website sections
+        // GOVGUIDE SELECTED SECTION NAVIGATION
+history.scrollRestoration = "manual";
+function showGovGuideSection(targetId, updateUrl) {
+    const target = document.getElementById(targetId);
+    const featureStrip = document.querySelector(".feature-strip");
+
+    if (!target) return;
+
+    if (featureStrip) {
+        featureStrip.style.display = targetId === "home" ? "" : "none";
+    }
+
+    if (targetId === "home") {
+        document.body.classList.remove("single-section-view");
+        document.body.removeAttribute("data-active-section");
+    } else {
+        document.body.classList.add("single-section-view");
+        document.body.setAttribute("data-active-section", targetId);
+    }
+
+    if (updateUrl) {
+        history.pushState(null, "", "#" + targetId);
+    }
+
+    const navbar = document.querySelector(".navbar");
+    const navbarHeight = navbar ? navbar.offsetHeight : 0;
+
+    const targetTop = target.getBoundingClientRect().top
+        + window.scrollY - navbarHeight;
+
+    window.scrollTo({
+        top: Math.max(0, targetTop),
+        behavior: "smooth"
+    });
+}
+
+document.querySelectorAll('#navLinks a[href^="#"]').forEach(function (link) {
+    link.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        const targetId = this.getAttribute("href").substring(1);
+        showGovGuideSection(targetId, true);
+    });
+});
+
+// Restore selected section when opening a direct link
+const initialSection = window.location.hash.substring(1);
+
+if (initialSection && initialSection !== "home") {
+    showGovGuideSection(initialSection, false);
+}
+
+// Search website sections
         const searchableSections = [
             { name: "education", id: "education" },
             { name: "courses colleges scholarship", id: "education" },
@@ -1331,19 +1624,9 @@
             }
         });
 
-        // Contact form demo only: no message is sent or saved
-        document.getElementById("contactForm").addEventListener("submit", function (event) {
-            event.preventDefault();
+        // Contact form submission is handled by the Firebase module below.
 
-            const status = document.getElementById("formStatus");
-            status.style.color = "#174ea6";
-            status.textContent =
-                "Demo only: your form is valid, but no message has been sent or saved. Connect a backend to enable submissions.";
-
-            alert("This is a demo form. Your message has not been sent or saved.");
-        });
-
-        // Current year in footer
+// Current year in footer
         document.getElementById("currentYear").textContent =
             new Date().getFullYear();
     </script>
@@ -1369,7 +1652,11 @@
       <label for="govPassword">Password</label>
       <input id="govPassword" type="password" required minlength="6" autocomplete="current-password" placeholder="At least 6 characters" style="box-sizing:border-box;width:100%;padding:12px;margin:8px 0 18px;border:1px solid #ddd;border-radius:8px;">
       <button id="govSubmit" type="submit" style="width:100%;padding:13px;background:#174ea6;color:white;border:0;border-radius:8px;cursor:pointer;">Login</button>
-    </form>
+    </form> 
+    <button type="button" id="govGoogleLogin" style="width:100%;display:flex;align-items:center;justify-content:center;gap:12px;padding:15px;margin-top:14px;background:#ffffff;color:#202124;border:2px solid #4285f4;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(66,133,244,0.22);">
+<span style="font-size:25px;font-weight:800;color:#4285f4;">G</span>
+<span>Continue with Google</span>
+</button>
 
     <p id="govLoginMessage" role="status" style="margin-top:15px;text-align:center;overflow-wrap:anywhere;"></p>
     <p id="govUserInfo" style="text-align:center;overflow-wrap:anywhere;"></p>
@@ -1379,8 +1666,13 @@
 </section>
 
 <script type="module">
-import { registerUser, loginUser, logoutUser, watchLoginState }
-  from "./js/firebase-auth.js";
+import {
+  registerUser,
+  loginUser,
+  logoutUser,
+  watchLoginState,
+  loginWithGoogle
+} from "./js/firebase-auth.js";
 
 const section = document.getElementById("loginSection");
 const form = document.getElementById("govLoginForm");
@@ -1394,6 +1686,22 @@ const submit = document.getElementById("govSubmit");
 const logout = document.getElementById("govLogout");
 const homeLoginLink = document.getElementById("homeLoginLink");
 const homeLogoutBtn = document.getElementById("homeLogoutBtn");
+document.getElementById("govGoogleLogin").addEventListener("click", async () => {
+  const googleButton = document.getElementById("govGoogleLogin");
+  googleButton.disabled = true;
+  showMessage("Opening Google sign-in...");
+
+  try {
+    await loginWithGoogle();
+    showMessage("Google login successful!");
+    window.location.reload();
+  } catch (error) {
+    console.error("Google login failed:", error);
+    showMessage(error.message || "Google login failed. Please try again.", true);
+  } finally {
+    googleButton.disabled = false;
+  }
+});
 let mode = "login";
 
 function showMessage(text, isError = false) {
@@ -1492,8 +1800,71 @@ if (homeLogoutBtn) {
 
 setMode("login");
 </script>
+<script type="module">
+import { submitContactMessage } from "./js/firebase-auth.js";
+
+const contactForm = document.getElementById("contactForm");
+
+if (contactForm) {
+  contactForm.addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const status = document.getElementById("formStatus");
+    const button = contactForm.querySelector('button[type="submit"]');
+
+    const data = {
+      fullName: document.getElementById("fullName").value,
+      email: document.getElementById("email").value,
+      messageType: document.getElementById("messageType").value,
+      subject: document.getElementById("subject").value,
+      message: document.getElementById("message").value
+    };
+
+    status.style.color = "#174ea6";
+    status.textContent = "Submitting your message...";
+    if (button) button.disabled = true;
+
+    try {
+      await submitContactMessage(data);
+      status.style.color = "#137333";
+      status.textContent = "Your message has been submitted successfully.";
+      contactForm.reset();
+    } catch (error) {
+      console.error("Contact form error:", error);
+      status.style.color = "#b3261e";
+      status.textContent = error.message || "Could not submit your message. Please try again.";
+    } finally {
+      if (button) button.disabled = false;
+    }
+  });
+}
+</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

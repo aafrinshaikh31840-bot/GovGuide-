@@ -1,77 +1,151 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GovGuide | Admin Dashboard</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Arial, sans-serif; background: #f3f6fc; color: #18233b; }
-    header { background: #172554; color: white; padding: 22px 7%; display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap; }
-    header h1 { font-size: 25px; }
-    header p { margin-top: 6px; color: #dbeafe; }
-    main { max-width: 1100px; margin: 35px auto; padding: 0 20px; }
-    .notice, .card, .section { background: white; border-radius: 14px; padding: 22px; margin-bottom: 20px; }
-    .notice { background: #eff6ff; line-height: 1.6; }
-    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
-    .card h3 { color: #64748b; font-size: 15px; }
-    .number { font-size: 32px; font-weight: bold; margin-top: 16px; }
-    .section { margin-top: 24px; overflow-x: auto; }
-    .section h2 { margin-bottom: 16px; }
-    table { width: 100%; border-collapse: collapse; min-width: 550px; }
-    th, td { padding: 13px; border-bottom: 1px solid #e2e8f0; text-align: left; }
-    th { background: #f8fafc; }
-    button { background: white; color: #172554; border: 0; border-radius: 8px; padding: 11px 16px; font-weight: bold; cursor: pointer; }
-    #status { margin: 15px 0; line-height: 1.6; }
-    footer { text-align: center; color: #64748b; padding: 25px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GovGuide | Admin Dashboard</title>
+<link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
-  <header>
+
+<div class="admin-layout">
+
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brand-icon">G</div>
     <div>
-      <h1>GovGuide Admin</h1>
-      <p>Administration dashboard</p>
+      <h2>GovGuide</h2>
+      <span>ADMIN PANEL</span>
     </div>
-    <button id="logoutBtn">Sign out</button>
-  </header>
-
-  <main>
-    <div class="notice">
-      <strong>Admin dashboard</strong>
-      <p>Login statistics and recent login events from Firestore.</p>
-      <p id="adminEmail">Checking admin access...</p>
-      <p id="status" role="status">Loading dashboard...</p>
-    </div>
-
-<div class="cards">
-  <div class="card">
-    <h3>Registered Accounts</h3>
-    <div class="number">5</div>
-    <p>Manually verified Firebase Authentication account total.</p>
   </div>
 
-  <div class="card">
-    <h3>Successful Login Events</h3>
+  <div class="side-label">MAIN MENU</div>
+  <nav class="side-nav">
+    <a href="index.html"><span>⌂</span> Home Page</a>
+    <a class="active" href="#overview"><span>▦</span> Dashboard</a>
+    <a href="#statistics"><span>▣</span> Statistics</a>
+    <a href="#activity"><span>◷</span> Login Activity</a>
+    <a href="#messages"><span>✉</span> Messages & Complaints</a>
+  </nav>
+
+  <div class="sidebar-bottom">
+    <div class="admin-mini">GG</div>
+    <div class="admin-mini-text">
+      <strong>Administrator</strong>
+      <span>GovGuide Control</span>
+    </div>
+  </div>
+</aside>
+
+<div class="main-area">
+
+<header class="topbar">
+  <div>
+    <h1>Admin Dashboard</h1>
+    <p>Welcome to your GovGuide control centre</p>
+  </div>
+  <button id="logoutBtn">Sign out ↗</button>
+</header>
+
+<main>
+
+<section class="welcome-panel" id="overview">
+  <div>
+    <span class="welcome-tag">ADMINISTRATION</span>
+    <h2>Welcome to GovGuide 👋</h2>
+    <p>Manage your platform activity, monitor users and review visitor messages.</p>
+    <p id="adminEmail">Checking admin access...</p>
+    <p id="status" role="status">Loading dashboard...</p>
+  </div>
+  <div class="welcome-art">G</div>
+</section>
+
+<section id="statistics">
+
+  <div class="section-title">
+    <span>OVERVIEW</span>
+    <h2>Statistics</h2>
+    <p>Quick overview of registered users and platform activity</p>
+  </div>
+
+  <div class="stats-grid">
+<article class="stat-card users-card">
+    <div class="stat-top">
+      <span>REGISTERED ACCOUNTS</span>
+      <div class="stat-icon">♙</div>
+    </div>
+    <div class="number" id="userCount">—</div>
+    <p>Total registered accounts from Firebase</p>
+  </article>
+
+  <article class="stat-card login-card">
+    <div class="stat-top">
+      <span>SUCCESSFUL LOGIN EVENTS</span>
+      <div class="stat-icon">↗</div>
+    </div>
     <div class="number" id="loginCount">—</div>
+    <p>Total successful login events from Firebase</p>
+  </article>
   </div>
-</div>
 
-    <section class="section">
+</section>
+
+
+<section class="content-panel" id="activity">
+  <div class="panel-heading">
+    <div>
+      <span class="panel-eyebrow">PLATFORM MONITORING</span>
       <h2>Recent Login Activity</h2>
-      <table>
-        <thead>
-          <tr><th>Email</th><th>Method</th><th>Date &amp; Time</th></tr>
-        </thead>
-        <tbody id="loginRows">
-          <tr><td colspan="3">Loading login records...</td></tr>
-        </tbody>
-      </table>
-    </section>
-  </main>
+      <p>Latest login records received from Firebase</p>
+    </div>
+    <span class="live-label">● LIVE DATA</span>
+  </div>
 
-  <footer>© 2026 GovGuide · Admin area</footer>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Email</th><th>Method</th><th>Date &amp; Time</th></tr>
+      </thead>
+      <tbody id="loginRows">
+        <tr><td colspan="3">Loading login records...</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
-  <script type="module">
+<section class="content-panel messages-panel" id="messages">
+  <div class="panel-heading">
+    <div>
+      <span class="panel-eyebrow">USER COMMUNICATION</span>
+      <h2>Visitor Messages &amp; Complaints</h2>
+      <p>Review messages submitted by GovGuide visitors</p>
+    </div>
+    <div class="message-icon">✉</div>
+  </div>
+
+  <p id="contactMessagesStatus" role="status">Loading messages...</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Name / Email</th>
+          <th>Subject / Message</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="contactMessageRows"></tbody>
+    </table>
+  </div>
+</section>
+
+<footer>© 2026 GovGuide | Admin Control Panel</footer>
+</main>
+</div>
+</div>
+<script type="module">
     import { initializeApp } from
       "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
     import {
@@ -114,6 +188,9 @@
       loginRows.replaceChildren();
 
       try {
+const usersRef = collection(db, "users");
+const usersSnapshot = await getCountFromServer(usersRef);
+userCount.textContent = usersSnapshot.data().count;
         const eventsRef = collection(db, "loginEvents");
         const countSnapshot = await getCountFromServer(eventsRef);
         loginCount.textContent = countSnapshot.data().count;
@@ -192,5 +269,98 @@
       location.href = "login.html";
     });
   </script>
+
+<script type="module">
+    import {getApp} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+    import {getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+    import {getFirestore, collection, getDocs, query, orderBy, limit} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+    const approvedAdmins = [
+      "aafrinshaikh31840@gmail.com",
+      "shahezadishaikh98@gmail.com"
+    ];
+    const auth = getAuth(getApp());
+    const db = getFirestore(getApp());
+    const statusEl = document.getElementById("contactMessagesStatus");
+    const rows = document.getElementById("contactMessageRows");
+
+    const safe = value => String(value ?? "").replace(/[&<>"']/g, ch => ({
+      "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+    })[ch]);
+
+    onAuthStateChanged(auth, async user => {
+      if (!user || !approvedAdmins.includes((user.email || "").toLowerCase())) {
+        statusEl.textContent = "Only approved admins can view messages.";
+        return;
+      }
+      try {
+        const q = query(collection(db, "contactMessages"), orderBy("createdAt", "desc"), limit(100));
+        const snap = await getDocs(q);
+        if (snap.empty) {
+          statusEl.textContent = "No messages submitted yet.";
+          return;
+        }
+        statusEl.textContent = `Showing ${snap.size} most recent message(s).`;
+        rows.innerHTML = snap.docs.map(docSnap => {
+          const d = docSnap.data();
+          const date = d.createdAt?.toDate ? d.createdAt.toDate().toLocaleString() : "Pending";
+          return `<tr>
+            <td style="padding:10px;vertical-align:top;">${safe(date)}</td>
+            <td style="padding:10px;vertical-align:top;">${safe(d.messageType)}</td>
+            <td style="padding:10px;vertical-align:top;">${safe(d.fullName)}<br>${safe(d.email)}</td>
+            <td style="padding:10px;vertical-align:top;"><strong>${safe(d.subject)}</strong><br>${safe(d.message)}</td>
+            <td style="padding:10px;vertical-align:top;">${safe(d.status || "new")}</td>
+          </tr>`;
+        }).join("");
+      } catch (error) {
+        console.error(error);
+        statusEl.textContent = "Could not load messages. Check Firestore rules and deployment.";
+      }
+    });
+  </script>
+
+
+<script>
+/* GOVGUIDE ADMIN TAB NAVIGATION */
+(function () {
+    const links = document.querySelectorAll(".side-nav a");
+    const sectionIds = ["overview", "statistics", "activity", "messages"];
+    const sections = sectionIds
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
+
+    function showSection(id) {
+        sections.forEach(section => {
+            const visible = id === "overview" || section.id === id;
+            section.classList.toggle("admin-tab-hidden", !visible);
+        });
+
+        links.forEach(link => {
+            link.classList.toggle("active", link.getAttribute("href") === "#" + id);
+        });
+
+        history.replaceState(null, "", "#" + id);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    links.forEach(link => {
+        link.addEventListener("click", function (event) {
+            const id = this.getAttribute("href").substring(1);
+
+            if (sectionIds.includes(id)) {
+                event.preventDefault();
+                showSection(id);
+            }
+        });
+    });
+
+    const requested = location.hash.substring(1);
+    showSection(sectionIds.includes(requested) ? requested : "overview");
+})();
+</script>
 </body>
 </html>
+
+
+
+

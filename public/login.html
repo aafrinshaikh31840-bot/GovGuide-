@@ -200,7 +200,7 @@ import {
           if (password !== document.getElementById("confirm").value) {
             throw new Error("Passwords do not match.");
           }
-          const result = await registerUser(email, password);
+          const result = await registerUser(document.getElementById("name").value.trim(), email, password);
           message.textContent = result;
         } else {
           
@@ -247,6 +247,8 @@ import {
   </script>
 </body>
 </html>
+
+
 
 
 

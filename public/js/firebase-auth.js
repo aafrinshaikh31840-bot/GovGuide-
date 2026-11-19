@@ -41,7 +41,7 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 // Create a profile only if one does not already exist.
-async function ensureUserProfile(user) {
+async function ensureUserProfile(user, name = "") {
   if (!user?.email) return;
 
   try {
@@ -51,6 +51,7 @@ async function ensureUserProfile(user) {
     if (!existing.exists()) {
       await setDoc(userRef, {
         email: user.email,
+        name: name.trim() || user.displayName || "",
         createdAt: serverTimestamp()
       });
     }
@@ -75,12 +76,12 @@ async function recordLogin(user, method) {
 }
 
 // Register a new account and send verification email.
-export async function registerUser(email, password) {
+export async function registerUser(name, email, password) {
   const result = await createUserWithEmailAndPassword(
     auth, email, password
   );
 
-  await ensureUserProfile(result.user);
+  await ensureUserProfile(result.user, name);
   await sendEmailVerification(result.user);
   await signOut(auth);
 
@@ -126,4 +127,42 @@ export async function loginWithGoogle() {
   await recordLogin(result.user, "google");
 
   return result.user;
+}
+
+
+
+
+
+// Save a Contact Us message for the Admin Dashboard.
+export async function submitContactMessage(data) {
+  const messageType = String(data.messageType || "").trim();
+  const fullName = String(data.fullName || "").trim();
+  const email = String(data.email || "").trim().toLowerCase();
+  const subject = String(data.subject || "").trim();
+  const message = String(data.message || "").trim();
+
+  const allowedTypes = ["Question", "Complaint", "Feedback", "Suggestion"];
+
+  if (!allowedTypes.includes(messageType)) {
+    throw new Error("Please select a valid message category.");
+  }
+
+  if (!fullName || !email || !subject || !message) {
+    throw new Error("Please complete all contact form fields.");
+  }
+
+  if (fullName.length > 100 || email.length > 254 ||
+      subject.length > 150 || message.length > 5000) {
+    throw new Error("One or more fields are too long.");
+  }
+
+  await addDoc(collection(db, "contactMessages"), {
+    messageType,
+    fullName,
+    email,
+    subject,
+    message,
+    status: "new",
+    createdAt: serverTimestamp()
+  });
 }
