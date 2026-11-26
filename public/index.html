@@ -1535,20 +1535,15 @@ body.single-section-view > footer {
 history.scrollRestoration = "manual";
 function showGovGuideSection(targetId, updateUrl) {
     const target = document.getElementById(targetId);
-    const featureStrip = document.querySelector(".feature-strip");
 
     if (!target) return;
 
-    if (featureStrip) {
-        featureStrip.style.display = targetId === "home" ? "" : "none";
-    }
+    document.body.classList.remove("single-section-view");
+    document.body.removeAttribute("data-active-section");
 
-    if (targetId === "home") {
-        document.body.classList.remove("single-section-view");
-        document.body.removeAttribute("data-active-section");
-    } else {
-        document.body.classList.add("single-section-view");
-        document.body.setAttribute("data-active-section", targetId);
+    const featureStrip = document.querySelector(".feature-strip");
+    if (featureStrip) {
+        featureStrip.style.display = "";
     }
 
     if (updateUrl) {
@@ -1841,6 +1836,7 @@ if (contactForm) {
 </script>
 </body>
 </html>
+
 
 
 
