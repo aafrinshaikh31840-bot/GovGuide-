@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1594,6 +1594,14 @@ document.querySelectorAll('#navLinks a[href^="#"]').forEach(function (link) {
     });
 });
 
+// Make the Ask a Question card open the Contact section
+document.querySelectorAll('a.card-link[href="#contact"]').forEach(function (link) {
+    link.addEventListener("click", function (event) {
+        event.preventDefault();
+        showGovGuideSection("contact", true);
+    });
+});
+
 // Restore selected section when opening a direct link
 const initialSection = window.location.hash.substring(1);
 
@@ -1853,6 +1861,7 @@ if (contactForm) {
 </script>
 </body>
 </html>
+
 
 
 

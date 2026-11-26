@@ -1,4 +1,4 @@
-﻿
+
 import { initializeApp } from
   "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 
@@ -10,6 +10,8 @@ import {
   sendPasswordResetEmail,
   signOut,
   GoogleAuthProvider,
+  EmailAuthProvider,
+  linkWithCredential,
   signInWithPopup,
   onAuthStateChanged
 } from
@@ -165,4 +167,24 @@ export async function submitContactMessage(data) {
     status: "new",
     createdAt: serverTimestamp()
   });
+}
+
+// Add a password to an existing Google account.
+export async function linkPasswordToGoogleAccount(password) {
+  const user = auth.currentUser;
+
+  if (!user || !user.email) {
+    throw new Error("Please sign in with Google first.");
+  }
+
+  const credential = EmailAuthProvider.credential(
+    user.email,
+    password
+  );
+
+  const result = await linkWithCredential(user, credential);
+
+  await ensureUserProfile(result.user);
+
+  return "Password successfully added to your Google account.";
 }

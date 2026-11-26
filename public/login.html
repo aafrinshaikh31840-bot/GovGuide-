@@ -1,4 +1,4 @@
-﻿
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,6 +84,13 @@
     <button type="button" id="googleLoginBtn" class="submit" style="margin-top:12px;background:#fff;color:#222;border:1px solid #ddd;">Continue with Google</button>
 
     <p id="message" role="status" aria-live="polite"></p>
+    <div id="setPasswordBox" class="hidden">
+      <h3>Set Password for Google Account</h3>
+      <label for="googleNewPassword">New Password</label>
+      <input id="googleNewPassword" type="password" minlength="6"
+             autocomplete="new-password" placeholder="Enter at least 6 characters">
+      <button id="setPasswordBtn" class="submit" type="button">Set Password</button>
+    </div>
     <button id="logoutBtn" class="submit hidden" type="button">Logout</button>
     <a class="back" href="index.html">← Back to Home</a>
   </main>
@@ -95,7 +102,8 @@ import {
   logoutUser,
   watchLoginState,
   resetUserPassword,
-  loginWithGoogle
+  loginWithGoogle,
+  linkPasswordToGoogleAccount
 } from "./js/firebase-auth.js";
     
     import { sendAdminLoginAlert } from "./js/email-notification.js";
@@ -172,7 +180,15 @@ import {
         } catch (notificationError) {
           console.error("Admin email notification failed:", notificationError);
         }
-        window.location.href = "index.html";
+        const hasPassword = user.providerData.some(
+          provider => provider.providerId === "password"
+        );
+
+        if (hasPassword) {
+          window.location.href = "index.html";
+        } else {
+          message.textContent = "Google login successful. You can now set a password below.";
+        }
       } catch (error) {
         console.error("Google login failed:", error);
         message.textContent = error.message || "Google login failed. Please try again.";
@@ -187,6 +203,7 @@ import {
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
       if (busy) return;
+
       busy = true;
       const submitBtn = document.getElementById("submitBtn");
       submitBtn.disabled = true;
@@ -200,24 +217,28 @@ import {
           if (password !== document.getElementById("confirm").value) {
             throw new Error("Passwords do not match.");
           }
-          const result = await registerUser(document.getElementById("name").value.trim(), email, password);
+
+          const result = await registerUser(
+            document.getElementById("name").value.trim(),
+            email,
+            password
+          );
+
           message.textContent = result;
         } else {
-          
           const user = await loginUser(email, password);
           message.textContent = "Login successful.";
 
           try {
             await sendAdminLoginAlert(user.email);
-            message.textContent = "Login successful. Admin notification sent.";
-            window.location.href = "index.html";
           } catch (notificationError) {
             console.error("Admin email notification failed:", notificationError);
-            message.textContent = "Login successful, but admin email notification failed.";
           }
 
+          window.location.href = "index.html";
         }
       } catch (error) {
+        console.error("Authentication failed:", error);
         message.textContent = error.message || "Something went wrong. Please try again.";
       } finally {
         busy = false;
@@ -225,6 +246,37 @@ import {
       }
     });
 
+    document.getElementById("setPasswordBtn").addEventListener("click", async () => {
+      const password = document.getElementById("googleNewPassword").value;
+      const button = document.getElementById("setPasswordBtn");
+
+      if (password.length < 6) {
+        message.textContent = "Password must contain at least 6 characters.";
+        return;
+      }
+
+      button.disabled = true;
+      message.textContent = "Setting password...";
+
+      try {
+        const result = await linkPasswordToGoogleAccount(password);
+        message.textContent = result + " You can now log out and use Email/Password login.";
+        document.getElementById("googleNewPassword").value = "";
+        document.getElementById("setPasswordBox").classList.add("hidden");
+      } catch (error) {
+        console.error("Password linking failed:", error);
+
+        if (error.code === "auth/provider-already-linked") {
+          message.textContent = "A password is already linked to this account.";
+        } else if (error.code === "auth/credential-already-in-use") {
+          message.textContent = "This password credential is already linked to another account.";
+        } else {
+          message.textContent = error.message || "Could not set password.";
+        }
+      } finally {
+        button.disabled = false;
+      }
+    });
     logoutBtn.addEventListener("click", async () => {
       try {
         await logoutUser();
@@ -236,6 +288,17 @@ import {
 
     watchLoginState((user) => {
       const loggedIn = Boolean(user && user.emailVerified);
+      const hasGoogle = Boolean(user && user.providerData.some(
+        provider => provider.providerId === "google.com"
+      ));
+      const hasPassword = Boolean(user && user.providerData.some(
+        provider => provider.providerId === "password"
+      ));
+
+      document.getElementById("setPasswordBox").classList.toggle(
+        "hidden",
+        !(loggedIn && hasGoogle && !hasPassword)
+      );
       form.classList.toggle("hidden", loggedIn);
       document.querySelector(".tabs").classList.toggle("hidden", loggedIn);
       logoutBtn.classList.toggle("hidden", !loggedIn);
