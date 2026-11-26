@@ -1535,22 +1535,37 @@ body.single-section-view > footer {
 history.scrollRestoration = "manual";
 function showGovGuideSection(targetId, updateUrl) {
     const target = document.getElementById(targetId);
+    const main = target ? target.closest("main") : null;
+    if (!target || !main) return;
 
-    if (!target) return;
+    Array.from(main.children).forEach(function (item) {
+        const beforeTarget = item !== target &&
+            !item.contains(target);
+
+        if (beforeTarget) {
+            item.style.setProperty("display", "none", "important");
+        } else {
+            item.style.removeProperty("display");
+        }
+    });
+
+    document.body.classList.remove("single-section-view");
+    document.body.removeAttribute("data-active-section");
 
     if (updateUrl) {
         history.pushState(null, "", "#" + targetId);
     }
 
     requestAnimationFrame(function () {
-        const navbar = document.querySelector(".navbar");
-        const navbarHeight = navbar
-            ? navbar.getBoundingClientRect().height
+        const header = document.querySelector("header");
+        const headerHeight = header
+            ? header.getBoundingClientRect().height
             : 0;
 
-        target.style.scrollMarginTop = (navbarHeight + 12) + "px";
+        const heading = target.querySelector(".section-heading") || target;
+        heading.style.scrollMarginTop = (headerHeight + 10) + "px";
 
-        target.scrollIntoView({
+        heading.scrollIntoView({
             behavior: "smooth",
             block: "start"
         });
@@ -1831,6 +1846,8 @@ if (contactForm) {
 </script>
 </body>
 </html>
+
+
 
 
 
