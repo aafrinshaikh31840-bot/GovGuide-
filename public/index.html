@@ -1543,22 +1543,24 @@ function showGovGuideSection(targetId, updateUrl) {
 
     const featureStrip = document.querySelector(".feature-strip");
     if (featureStrip) {
-        featureStrip.style.display = "";
+        featureStrip.style.display = targetId === "home" ? "" : "none";
     }
 
     if (updateUrl) {
         history.pushState(null, "", "#" + targetId);
     }
 
-    const navbar = document.querySelector(".navbar");
-    const navbarHeight = navbar ? navbar.offsetHeight : 0;
+    requestAnimationFrame(function () {
+        const navbar = document.querySelector(".navbar");
+        const navbarHeight = navbar ? navbar.offsetHeight : 0;
 
-    const targetTop = target.getBoundingClientRect().top
-        + window.scrollY - navbarHeight;
+        const targetTop = target.getBoundingClientRect().top
+            + window.scrollY - navbarHeight;
 
-    window.scrollTo({
-        top: Math.max(0, targetTop),
-        behavior: "smooth"
+        window.scrollTo({
+            top: Math.max(0, targetTop),
+            behavior: "smooth"
+        });
     });
 }
 
@@ -1836,6 +1838,7 @@ if (contactForm) {
 </script>
 </body>
 </html>
+
 
 
 
