@@ -1738,13 +1738,7 @@ function setMode(nextMode) {
 document.getElementById("govShowLogin").addEventListener("click", () => setMode("login"));
 document.getElementById("govShowSignup").addEventListener("click", () => setMode("signup"));
 
-document.querySelectorAll('a[href="login.html"]').forEach(link => {
-  link.addEventListener("click", event => {
-    event.preventDefault();
-    section.style.display = "block";
-    section.scrollIntoView({ behavior: "smooth" });
-  });
-});
+// Login links open login.html as a separate page.
 
 document.getElementById("govCloseLogin").addEventListener("click", () => {
   section.style.display = "none";
