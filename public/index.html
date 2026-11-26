@@ -1,4 +1,4 @@
-﻿
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1536,18 +1536,31 @@ history.scrollRestoration = "manual";
 function showGovGuideSection(targetId, updateUrl) {
     const target = document.getElementById(targetId);
     const main = target ? target.closest("main") : null;
+    const footer = document.querySelector("footer");
+
     if (!target || !main) return;
 
-    Array.from(main.children).forEach(function (item) {
-        const beforeTarget = item !== target &&
-            !item.contains(target);
-
-        if (beforeTarget) {
-            item.style.setProperty("display", "none", "important");
-        } else {
+    if (targetId === "home") {
+        Array.from(main.children).forEach(function (item) {
             item.style.removeProperty("display");
+        });
+
+        if (footer) {
+            footer.style.removeProperty("display");
         }
-    });
+    } else {
+        Array.from(main.children).forEach(function (item) {
+            if (item !== target && !item.contains(target)) {
+                item.style.setProperty("display", "none", "important");
+            } else {
+                item.style.removeProperty("display");
+            }
+        });
+
+        if (footer) {
+            footer.style.setProperty("display", "none", "important");
+        }
+    }
 
     document.body.classList.remove("single-section-view");
     document.body.removeAttribute("data-active-section");
